@@ -15,5 +15,8 @@
   "keywords": [
     "javascript",
     "starter"
+  ],
+  "browserlist": [
+    "last 1 Chrome versions"
   ]
 }
