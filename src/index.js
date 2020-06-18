@@ -1,5 +1,3 @@
-
-
 let createTimeout = (time) => (callback) => {
   setTimeout(callback, time)
 }
