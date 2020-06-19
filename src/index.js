@@ -1,17 +1,28 @@
 let createTimeout = (time) => (callback) => {
-  setTimeout(callback, time)
+  let id = setTimeout(callback, time)
+
+  return () => {
+    clearTimeout(id)
+  }
 }
 
 let oneSecond = createTimeout(1000)
 let twoSeconds = createTimeout(2000)
 let threeSeconds = createTimeout(3000)
 
-oneSecond(() => {
+let cancelOne = oneSecond(() => {
   console.log("one")
 })
-twoSeconds(() => {
+
+cancelOne()
+
+
+let cancelTwo = twoSeconds(() => {
   console.log("two")
 })
+
+cancelTwo()
+
 threeSeconds(() => {
   console.log("three")
 })
