@@ -6,23 +6,21 @@ let createTimeout = (time) => (callback) => {
   }
 }
 
-let oneSecond = createTimeout(1000)
-let twoSeconds = createTimeout(2000)
-let threeSeconds = createTimeout(3000)
 
-let cancelOne = oneSecond(() => {
-  console.log("one")
+
+let addListener = selector => eventType => listener => {
+  let element = document.querySelector(selector)
+  element.addEventListener(eventType, listener)
+
+  return () => {
+    element.removeEventListener(eventType, listener)
+  }
+}
+
+let addButtonListener = addListener("#button")
+let addButtonClickListener = addButtonListener("click")
+let removeButtonClickListener = addButtonClickListener(() => {
+  console.log("Button clicked")
 })
 
-cancelOne()
-
-
-let cancelTwo = twoSeconds(() => {
-  console.log("two")
-})
-
-cancelTwo()
-
-threeSeconds(() => {
-  console.log("three")
-})
+removeButtonClickListener()
