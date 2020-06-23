@@ -26,3 +26,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/create-interval/?module=/src/index.js) 
 
+
+### Merge 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/merge) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/merge/?module=/src/index.js) 
+

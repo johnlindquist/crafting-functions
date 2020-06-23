@@ -6,8 +6,6 @@ let createTimeout = time => listener => {
   }
 }
 
-
-
 let addListener = selector => eventType => listener => {
   let element = document.querySelector(selector)
   element.addEventListener(eventType, listener)
@@ -18,21 +16,31 @@ let addListener = selector => eventType => listener => {
 }
 
 let createInterval = time => listener => {
-
   let id = setInterval(listener, time)
   return () => {
     clearInterval(id)
   }
 }
 
+let addButtonListener = addListener("#button")
+let addButtonClickListener = addButtonListener("click")
+
 let oneSecond = createInterval(1000)
-let cancelOneSecond = oneSecond(() => {
-  console.log("one")
+
+//broadcaster = function that accepts a listener
+let merge = (broadcaster1, broadcaster2) => listener => {
+  let cancel1 = broadcaster1(listener)
+  let cancel2 = broadcaster2(listener)
+
+  return () => {
+    cancel1()
+    cancel2()
+  }
+}
+
+let clickOrTick = merge(addButtonClickListener, oneSecond)
+let cancelClickOrTick = clickOrTick(() => {
+  console.log("click or tick")
 })
 
-cancelOneSecond()
-
-let twoSeconds = createInterval(2000)
-twoSeconds(() => {
-  console.log("two")
-})
+cancelClickOrTick()
