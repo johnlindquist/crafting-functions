@@ -1,4 +1,4 @@
-import { curry, partial } from "lodash"
+import { curry } from "lodash"
 
 let createTimeout = curry((time, listener) => {
   let id = setTimeout(listener, time)
