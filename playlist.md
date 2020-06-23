@@ -33,3 +33,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/merge/?module=/src/index.js) 
 
+
+### Lodash-Curry 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/lodash-curry) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/lodash-curry/?module=/src/index.js) 
+
