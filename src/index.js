@@ -1,5 +1,5 @@
-let createTimeout = (time) => (callback) => {
-  let id = setTimeout(callback, time)
+let createTimeout = time => listener => {
+  let id = setTimeout(listener, time)
 
   return () => {
     clearTimeout(id)
@@ -17,10 +17,22 @@ let addListener = selector => eventType => listener => {
   }
 }
 
-let addButtonListener = addListener("#button")
-let addButtonClickListener = addButtonListener("click")
-let removeButtonClickListener = addButtonClickListener(() => {
-  console.log("Button clicked")
+let createInterval = time => listener => {
+
+  let id = setInterval(listener, time)
+  return () => {
+    clearInterval(id)
+  }
+}
+
+let oneSecond = createInterval(1000)
+let cancelOneSecond = oneSecond(() => {
+  console.log("one")
 })
 
-removeButtonClickListener()
+cancelOneSecond()
+
+let twoSeconds = createInterval(2000)
+twoSeconds(() => {
+  console.log("two")
+})

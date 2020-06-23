@@ -19,3 +19,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/add-listener/?module=/src/index.js) 
 
+
+### createInterval 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/create-interval) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/create-interval/?module=/src/index.js) 
+
