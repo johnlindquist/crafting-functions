@@ -40,3 +40,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/lodash-curry/?module=/src/index.js) 
 
+
+### Lodash-Partial 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/lodash-partial) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/lodash-partial/?module=/src/index.js) 
+

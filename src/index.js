@@ -1,4 +1,4 @@
-import { curry } from "lodash"
+import { curry, partial, flip } from "lodash"
 
 let createTimeout = curry((time, listener) => {
   let id = setTimeout(listener, time)
@@ -36,8 +36,9 @@ let merge = curry((broadcaster1, broadcaster2, listener) => {
 })
 
 let clickOrTick = merge(
-  addListener("#button", "click"),
-  createInterval(1000)
+  // addListener("#button", "click"),
+  partial(window.addEventListener, "copy"),
+  partial(flip(setInterval), 1000) //setInterval(()=> {}, 1000)
 )
 let cancelClickOrTick = clickOrTick(() => {
   console.log("click or tick")
