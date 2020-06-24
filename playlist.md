@@ -75,3 +75,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/done/?module=/src/index.js) 
 
+
+### Operator 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/operator) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/operator/?module=/src/index.js) 
+
