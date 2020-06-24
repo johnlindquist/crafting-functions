@@ -1,13 +1,23 @@
 import { curry } from "lodash"
 import { addListener, createInterval } from "./broadcasters"
 
+let done = Symbol("done")
+
 let zip = curry((broadcaster1, broadcaster2, listener) => {
+  let cancelBoth
+
   let buffer1 = []
   let cancel1 = broadcaster1(value => {
     buffer1.push(value)
+    // console.log(buffer1)
     if (buffer2.length) {
 
       listener([buffer1.shift(), buffer2.shift()])
+
+      if (buffer1[0] === done || buffer2[0] === done) {
+        listener(done)
+        cancelBoth()
+      }
     }
   })
 
@@ -18,13 +28,19 @@ let zip = curry((broadcaster1, broadcaster2, listener) => {
     if (buffer1.length) {
 
       listener([buffer1.shift(), buffer2.shift()])
+      if (buffer1[0] === done || buffer2[0] === done) {
+        listener(done)
+        cancelBoth()
+      }
     }
   })
 
-  return () => {
+  cancelBoth = () => {
     cancel1()
     cancel2()
   }
+
+  return cancelBoth
 })
 
 let forOf = curry((iterable, listener) => {
@@ -32,6 +48,7 @@ let forOf = curry((iterable, listener) => {
     for (let i of iterable) {
       listener(i)
     }
+    listener(done)
 
   }, 0)
 
@@ -46,7 +63,12 @@ let typeGreeting = zip(
 )
 
 let cancelTypeGreeting = typeGreeting(value => {
-  console.log(value[1])
+  if (value === done) {
+    console.log("Shutting down")
+    return
+  }
+
+  console.log(value)
 })
 
 // cancelTypeGreeting()
