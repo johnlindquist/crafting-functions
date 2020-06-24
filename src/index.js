@@ -1,12 +1,12 @@
 import { toLower } from "lodash"
 import { zip, createInterval, forOf, done } from "./broadcasters"
-import { map, modify } from "./operators"
+import { map, modify, filter } from "./operators"
 
 
-let typeGreeting = map(toLower, modify(zip(
+let typeGreeting = map(toLower, modify(filter(x => x != ",", map(x => x[1], zip(
   createInterval(100),
   forOf("Hello, John")
-)))
+)))))
 
 let cancelTypeGreeting = typeGreeting(value => {
   if (value === done) {

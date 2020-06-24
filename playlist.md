@@ -89,3 +89,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map/?module=/src/index.js) 
 
+
+### Filter 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/filter) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/filter/?module=/src/index.js) 
+

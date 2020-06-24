@@ -10,7 +10,7 @@ export let modify = curry((broadcaster, listener) => {
             return
         }
 
-        listener(string += value[1])
+        listener(string += value)
     })
 })
 
@@ -22,5 +22,17 @@ export let map = curry((transform, broadcaster, listener) => {
         }
 
         listener(transform(value))
+    })
+})
+
+export let filter = curry((predicate, broadcaster, listener) => {
+    return broadcaster(value => {
+        if (value === done) {
+            listener(done)
+            return
+        }
+        if (predicate(value)) {
+            listener(value)
+        }
     })
 })
