@@ -54,3 +54,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/zip/?module=/src/index.js) 
 
+
+### Zip 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/zip) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/zip/?module=/src/index.js) 
+

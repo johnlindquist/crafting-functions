@@ -36,4 +36,4 @@ let cancelClickAndTick = clickAndTick(value => {
   console.log(value)
 })
 
-cancelClickAndTick()
+// cancelClickAndTick()
