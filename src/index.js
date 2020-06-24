@@ -1,33 +1,25 @@
-import { curry, partial, flip } from "lodash"
+import { curry } from "lodash"
+import { addListener, createInterval } from "./broadcasters"
 
-let createTimeout = curry((time, listener) => {
-  let id = setTimeout(listener, time)
+let zip = curry((broadcaster1, broadcaster2, listener) => {
+  let buffer1 = []
+  let cancel1 = broadcaster1(value => {
+    buffer1.push(value)
+    if (buffer2.length) {
 
-  return () => {
-    clearTimeout(id)
-  }
-})
+      listener([buffer1.shift(), buffer2.shift()])
+    }
+  })
 
-let addListener = curry((selector, eventType, listener) => {
-  let element = document.querySelector(selector)
-  element.addEventListener(eventType, listener)
+  let buffer2 = []
+  let cancel2 = broadcaster2(value => {
+    buffer2.push(value)
 
-  return () => {
-    element.removeEventListener(eventType, listener)
-  }
-})
+    if (buffer1.length) {
 
-let createInterval = curry((time, listener) => {
-  let id = setInterval(listener, time)
-  return () => {
-    clearInterval(id)
-  }
-})
-
-//broadcaster = function that accepts a listener
-let merge = curry((broadcaster1, broadcaster2, listener) => {
-  let cancel1 = broadcaster1(listener)
-  let cancel2 = broadcaster2(listener)
+      listener([buffer1.shift(), buffer2.shift()])
+    }
+  })
 
   return () => {
     cancel1()
@@ -35,13 +27,13 @@ let merge = curry((broadcaster1, broadcaster2, listener) => {
   }
 })
 
-let clickOrTick = merge(
-  // addListener("#button", "click"),
-  partial(window.addEventListener, "copy"),
-  partial(flip(setInterval), 1000) //setInterval(()=> {}, 1000)
+let clickAndTick = zip(
+  addListener("#button", "click"),
+  createInterval(1000)
 )
-let cancelClickOrTick = clickOrTick(() => {
-  console.log("click or tick")
+
+let cancelClickAndTick = clickAndTick(value => {
+  console.log(value)
 })
 
-cancelClickOrTick()
+cancelClickAndTick()
