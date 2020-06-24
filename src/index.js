@@ -27,13 +27,26 @@ let zip = curry((broadcaster1, broadcaster2, listener) => {
   }
 })
 
-let clickAndTick = zip(
-  addListener("#button", "click"),
-  createInterval(1000)
-)
+let forOf = curry((iterable, listener) => {
+  let id = setTimeout(() => {
+    for (let i of iterable) {
+      listener(i)
+    }
 
-let cancelClickAndTick = clickAndTick(value => {
-  console.log(value)
+  }, 0)
+
+  return () => {
+    clearTimeout(id)
+  }
 })
 
-// cancelClickAndTick()
+let typeGreeting = zip(
+  createInterval(100),
+  forOf("Hello, John")
+)
+
+let cancelTypeGreeting = typeGreeting(value => {
+  console.log(value[1])
+})
+
+// cancelTypeGreeting()

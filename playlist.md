@@ -61,3 +61,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/zip/?module=/src/index.js) 
 
+
+### forOf 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/for-of) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/for-of/?module=/src/index.js) 
+
