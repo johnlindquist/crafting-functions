@@ -82,3 +82,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/operator/?module=/src/index.js) 
 
+
+### Map 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map/?module=/src/index.js) 
+
