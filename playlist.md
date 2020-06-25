@@ -96,3 +96,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/filter/?module=/src/index.js) 
 
+
+### Compose-Pipe 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/compose-pipe) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/compose-pipe/?module=/src/index.js) 
+
