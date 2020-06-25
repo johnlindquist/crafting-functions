@@ -1,36 +1,35 @@
 import { curry } from "lodash"
 import { done } from "./broadcasters"
 
-export let modify = curry((broadcaster, listener) => {
+let createOperator = curry((operator, broadcaster, listener) => {
+    return operator(behaviorListener => {
+        return broadcaster(value => {
+            if (value === done) {
+                listener(done)
+                return
+            }
+
+            behaviorListener(value)
+        })
+    }, listener)
+})
+
+export let modify = createOperator((broadcaster, listener) => {
     let string = ""
 
     return broadcaster(value => {
-        if (value === done) {
-            listener(done)
-            return
-        }
-
         listener(string += value)
     })
 })
 
-export let map = curry((transform, broadcaster, listener) => {
+export let map = transform => createOperator((broadcaster, listener) => {
     return broadcaster(value => {
-        if (value === done) {
-            listener(done)
-            return
-        }
-
         listener(transform(value))
     })
 })
 
-export let filter = curry((predicate, broadcaster, listener) => {
+export let filter = predicate => createOperator((broadcaster, listener) => {
     return broadcaster(value => {
-        if (value === done) {
-            listener(done)
-            return
-        }
         if (predicate(value)) {
             listener(value)
         }

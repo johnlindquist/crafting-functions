@@ -110,3 +110,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/design-api/?module=/src/index.js) 
 
+
+### createOperator 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/create-operator) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/create-operator/?module=/src/index.js) 
+
