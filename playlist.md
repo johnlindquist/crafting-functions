@@ -103,3 +103,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/compose-pipe/?module=/src/index.js) 
 
+
+### Design-Api 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/design-api) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/design-api/?module=/src/index.js) 
+

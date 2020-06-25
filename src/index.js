@@ -9,9 +9,13 @@ let operators = pipe(
   map(toLower),
 )
 
+let myZip = (broadcaster1, broadcaster2) => (...operators) => {
+  return pipe(...operators)(zip(broadcaster1, broadcaster2))
+}
+
 let typeGreeting = operators(zip(
   createInterval(100),
-  forOf("Hello, John")
+  forOf("My Zip")
 ))
 
 let cancelTypeGreeting = typeGreeting(value => {
