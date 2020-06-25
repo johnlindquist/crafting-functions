@@ -1,12 +1,13 @@
 import { toLower, compose, pipe } from "lodash/fp"
 import { zip, createInterval, forOf, done } from "./broadcasters"
-import { map, modify, filter } from "./operators"
+import { map, filter, split } from "./operators"
 
 let operators = pipe(
   map(x => x[1]),
   filter(x => x != ","),
-  modify,
   map(toLower),
+  split(" "),
+  map(array => array.join(""))
 )
 
 let typeGreeting = operators(zip(

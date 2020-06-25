@@ -117,3 +117,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/create-operator/?module=/src/index.js) 
 
+
+### Split 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/split) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/split/?module=/src/index.js) 
+
