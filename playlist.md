@@ -124,3 +124,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/split/?module=/src/index.js) 
 
+
+### Counter 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/counter) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/counter/?module=/src/index.js) 
+

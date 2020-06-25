@@ -1,27 +1,33 @@
-import { toLower, compose, pipe } from "lodash/fp"
-import { zip, createInterval, forOf, done } from "./broadcasters"
-import { map, filter, split } from "./operators"
+let addListener = (selector, eventType) => listener => {
+  let element = document.querySelector(selector)
+  element.addEventListener(eventType, listener)
+}
 
-let operators = pipe(
-  map(x => x[1]),
-  filter(x => x != ","),
-  map(toLower),
-  split(" "),
-  map(array => array.join(""))
-)
+let merge = (b1, b2) => listener => {
+  b1(listener)
+  b2(listener)
+}
 
-let typeGreeting = operators(zip(
-  createInterval(100),
-  forOf("Hello, John")
-))
+let plusClick = addListener("#plus", "click")
+let minusClick = addListener("#minus", "click")
 
-let cancelTypeGreeting = typeGreeting(value => {
-  if (value === done) {
-    console.log("Shutting down")
-    return
-  }
+let hardCode = newValue => broadcaster => listener => {
+  broadcaster(value => {
+    listener(newValue)
+  })
+}
 
+let add = initial => broadcaster => listener => {
+  broadcaster(value => {
+    listener(initial += value)
+  })
+}
+
+let plusOne = hardCode(1)(plusClick)
+let minusOne = hardCode(-1)(minusClick)
+
+let counter = add(0)(merge(plusOne, minusOne))
+
+counter(value => {
   console.log(value)
 })
-
-// cancelTypeGreeting()
