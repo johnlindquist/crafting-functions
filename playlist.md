@@ -138,3 +138,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/counter/?module=/src/index.js) 
 
+
+### Start-Stop-Timer 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/start-stop-timer) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/start-stop-timer/?module=/src/index.js) 
+

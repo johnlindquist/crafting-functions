@@ -1,33 +1,46 @@
-let addListener = (selector, eventType) => listener => {
-  let element = document.querySelector(selector)
-  element.addEventListener(eventType, listener)
-}
+import { addListener, createInterval } from "./broadcasters"
+import { pipe } from "lodash/fp"
 
-let merge = (b1, b2) => listener => {
-  b1(listener)
-  b2(listener)
-}
+let startClick = addListener("#start", "click")
+let stopClick = addListener("#stop", "click")
 
-let plusClick = addListener("#plus", "click")
-let minusClick = addListener("#minus", "click")
+let timer = createInterval(100)
 
-let hardCode = newValue => broadcaster => listener => {
-  broadcaster(value => {
-    listener(newValue)
+
+
+let startWhen = whenBroadcaster => mainBroadcaster => listener => {
+  let cancelMain
+  let cancelWhen
+
+  cancelWhen = whenBroadcaster(() => {
+    if (cancelMain) cancelMain()
+    cancelMain = mainBroadcaster(value => {
+      listener(value)
+    })
   })
+
+  return () => {
+    cancelMain()
+    cancelWhen()
+  }
 }
 
-let add = initial => broadcaster => listener => {
-  broadcaster(value => {
-    listener(initial += value)
+let stopWhen = whenBroadcaster => mainBroadcaster => listener => {
+  let cancelMain = mainBroadcaster(listener)
+
+  let cancelWhen = whenBroadcaster(value => {
+    cancelMain()
   })
+
+  return () => {
+    cancelMain()
+    cancelWhen()
+  }
 }
 
-let plusOne = hardCode(1)(plusClick)
-let minusOne = hardCode(-1)(minusClick)
+let operators = pipe(
+  stopWhen(stopClick),
+  startWhen(startClick)
+)
 
-let counter = add(0)(merge(plusOne, minusOne))
-
-counter(value => {
-  console.log(value)
-})
+operators(timer)(console.log)

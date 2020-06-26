@@ -44,3 +44,15 @@ export let split = splitter => curry((broadcaster, listener) => {
         }
     })
 })
+
+export let hardCode = newValue => broadcaster => listener => {
+    return broadcaster(value => {
+        listener(newValue)
+    })
+}
+
+export let add = initial => broadcaster => listener => {
+    return broadcaster(value => {
+        listener(initial += value)
+    })
+}
