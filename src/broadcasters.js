@@ -10,7 +10,7 @@ export let createTimeout = curry((time, listener) => {
 })
 
 export let addListener = curry((selector, eventType, listener) => {
-    let element = document.querySelector(selector)
+    let element = typeof selector == "string" ? document.querySelector(selector) : selector
     element.addEventListener(eventType, listener)
 
     return () => {
