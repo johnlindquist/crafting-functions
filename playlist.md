@@ -145,3 +145,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/start-stop-timer/?module=/src/index.js) 
 
+
+### Hangman 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/hangman) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman/?module=/src/index.js) 
+

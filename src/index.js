@@ -1,46 +1,45 @@
-import { addListener, createInterval } from "./broadcasters"
+import { addListener, forOf, done } from "./broadcasters"
+import { map, targetValue } from "./operators"
 import { pipe } from "lodash/fp"
 
-let startClick = addListener("#start", "click")
-let stopClick = addListener("#stop", "click")
+let inputValue = targetValue(addListener("#input", "input"))
 
-let timer = createInterval(100)
+let word = forOf("honeycomb")
 
-
-
-let startWhen = whenBroadcaster => mainBroadcaster => listener => {
-  let cancelMain
-  let cancelWhen
-
-  cancelWhen = whenBroadcaster(() => {
-    if (cancelMain) cancelMain()
-    cancelMain = mainBroadcaster(value => {
-      listener(value)
-    })
+let mapBroadcaster = (createBroadcaster) => (
+  broadcaster
+) => (listener) => {
+  return broadcaster((value) => {
+    let newBroadcaster = createBroadcaster(value)
+    newBroadcaster(listener)
   })
-
-  return () => {
-    cancelMain()
-    cancelWhen()
-  }
 }
 
-let stopWhen = whenBroadcaster => mainBroadcaster => listener => {
-  let cancelMain = mainBroadcaster(listener)
+let applyOperator = (broadcaster) =>
+  mapBroadcaster((operator) => operator(broadcaster))
 
-  let cancelWhen = whenBroadcaster(value => {
-    cancelMain()
+let stringConcat = (broadcaster) => (listener) => {
+  let result = ""
+  return broadcaster((value) => {
+    if (value === done) {
+      listener(result)
+      result = ""
+      return
+    }
+    result += value
   })
-
-  return () => {
-    cancelMain()
-    cancelWhen()
-  }
 }
 
-let operators = pipe(
-  stopWhen(stopClick),
-  startWhen(startClick)
+let hangmanLogic = (value) => {
+  return map((letter) =>
+    value.includes(letter) ? letter : "*"
+  )
+}
+
+let hangman = pipe(
+  map(hangmanLogic),
+  applyOperator(word),
+  stringConcat
 )
 
-operators(timer)(console.log)
+hangman(inputValue)(console.log)
