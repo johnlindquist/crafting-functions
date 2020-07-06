@@ -152,3 +152,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman/?module=/src/index.js) 
 
+
+### Hangman-Win 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/hangman-win) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman-win/?module=/src/index.js) 
+
