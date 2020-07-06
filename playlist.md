@@ -159,3 +159,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman-win/?module=/src/index.js) 
 
+
+### Hangman-Score-Working 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/hangman-score-working) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman-score-working/?module=/src/index.js) 
+

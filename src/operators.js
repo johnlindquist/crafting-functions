@@ -115,3 +115,40 @@ export let stringConcat = broadcaster => listener => {
     result += value
   })
 }
+
+export let doneCondition = condition => broadcaster => listener => {
+  let cancel = filter(condition)(broadcaster)(value => {
+    listener(done)
+    cancel()
+    console.log("canceled")
+  })
+
+  return cancel
+}
+
+export let mapDone = doneValue => broadcaster => listener => {
+  return broadcaster(value => {
+    if (value === done) {
+      listener(doneValue)
+    } else {
+      listener(value)
+    }
+  })
+}
+
+export let cancelWhen = cancelBroadcaster => broadcaster => listener => {
+  let cancel = broadcaster(listener)
+  console.log({ cancelBroadcaster })
+  let cancel2 = cancelBroadcaster(value => {
+    console.log(`CANCEL WHEN!!!`, value)
+    cancel()
+    cancel2()
+  })
+
+  console.log({ cancel2 })
+
+  return () => {
+    cancel()
+    cancel2()
+  }
+}

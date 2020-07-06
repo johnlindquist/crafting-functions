@@ -31,17 +31,25 @@ export let createInterval = curry((time, listener) => {
 })
 
 //broadcaster = function that accepts a listener
-export let merge = curry(
-  (broadcaster1, broadcaster2, listener) => {
-    let cancel1 = broadcaster1(listener)
-    let cancel2 = broadcaster2(listener)
+export let merge = (
+  broadcaster1,
+  broadcaster2
+) => listener => {
+  let cancel1 = broadcaster1(value => {
+    console.log("merge 1", { value })
+    listener(value)
+  })
+  let cancel2 = broadcaster2(value => {
+    console.log("merge 2", { value })
+    listener(value)
+  })
 
-    return () => {
-      cancel1()
-      cancel2()
-    }
+  return () => {
+    console.log("merge cancelled")
+    cancel1()
+    cancel2()
   }
-)
+}
 
 export let zip = curry(
   (broadcaster1, broadcaster2, listener) => {
