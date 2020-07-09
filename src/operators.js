@@ -50,11 +50,12 @@ export let split = splitter =>
     })
   })
 
-export let hardCode = newValue => broadcaster => listener => {
-  return broadcaster(value => {
-    listener(newValue)
+export let hardCode = newValue =>
+  createOperator((broadcaster, listener) => {
+    return broadcaster(value => {
+      listener(newValue)
+    })
   })
-}
 
 export let add = initial => broadcaster => listener => {
   return broadcaster(value => {

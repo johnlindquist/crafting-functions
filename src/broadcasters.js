@@ -2,7 +2,10 @@ import { curry } from "lodash"
 export let done = Symbol("done")
 
 export let createTimeout = curry((time, listener) => {
-  let id = setTimeout(listener, time)
+  let id = setTimeout(() => {
+    listener(null)
+    listener(done)
+  }, time)
 
   return () => {
     clearTimeout(id)
