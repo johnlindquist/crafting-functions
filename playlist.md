@@ -173,3 +173,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat/?module=/src/index.js) 
 
+
+### Repeat-When 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeat-when) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat-when/?module=/src/index.js) 
+
