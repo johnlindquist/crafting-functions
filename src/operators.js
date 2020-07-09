@@ -67,9 +67,15 @@ export let startWhen = whenBroadcaster => mainBroadcaster => listener => {
   let cancelMain
   let cancelWhen
 
-  cancelWhen = whenBroadcaster(() => {
+  cancelWhen = whenBroadcaster(whenValue => {
     if (cancelMain) cancelMain()
     cancelMain = mainBroadcaster(value => {
+      if (value === done) {
+        if (whenValue === done) {
+          listener(done)
+        }
+        return
+      }
       listener(value)
     })
   })

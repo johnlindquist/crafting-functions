@@ -180,3 +180,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat-when/?module=/src/index.js) 
 
+
+### repeatWhen-vs-startWhen 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeat-when-vs-start-when) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat-when-vs-start-when/?module=/src/index.js) 
+
