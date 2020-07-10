@@ -1,50 +1,37 @@
-import {
-  createTimeout,
-  done,
-  forOf,
-  addListener,
-} from "./broadcasters"
-import { hardCode, startWhen } from "./operators"
+import { addListener, done } from "./broadcasters"
+import { repeatWhen, filter } from "./operators"
+import { pipe } from "lodash/fp"
 
-let repeat = broadcaster => listener => {
-  let cancel
-  let repeatListener = value => {
-    if (value === done) {
-      cancel()
-      cancel = broadcaster(repeatListener)
-      return
-    }
+let inputClick = addListener("#input", "click")
 
+let state = broadcaster => listener => {
+  let state = 3
+  return broadcaster(value => {
+    state--
+    listener(state)
+  })
+}
+
+let doneIf = condition => broadcaster => listener => {
+  let cancel = broadcaster(value => {
     listener(value)
-  }
-  cancel = broadcaster(repeatListener)
+    if (condition(value)) {
+      listener(done)
+      cancel()
+    }
+  })
 
   return cancel
 }
 
-let repeatWhen = whenBroadcaster => broadcaster => listener => {
-  let cancel
-  let cancelWhen
-  let repeatListener = value => {
-    if (value === done) {
-      cancel()
-      if (cancelWhen) cancelWhen()
-      cancelWhen = whenBroadcaster(() => {
-        cancel = broadcaster(repeatListener)
-      })
-      return
-    }
+let inputEnter = filter(event => event.key === "Enter")(
+  addListener("#input", "keydown")
+)
 
-    listener(value)
-  }
-  cancel = broadcaster(repeatListener)
+let score = pipe(
+  state,
+  doneIf(value => value === 0),
+  repeatWhen(inputEnter)
+)
 
-  return () => {
-    cancel()
-    if (cancelWhen) cancelWhen()
-  }
-}
-
-let word = forOf("cat")
-let inputClick = addListener("#input", "click")
-repeatWhen(inputClick)(word)(console.log)
+score(inputClick)(console.log)

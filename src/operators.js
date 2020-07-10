@@ -122,3 +122,43 @@ export let stringConcat = broadcaster => listener => {
     result += value
   })
 }
+
+export let repeat = broadcaster => listener => {
+  let cancel
+  let repeatListener = value => {
+    if (value === done) {
+      cancel()
+      cancel = broadcaster(repeatListener)
+      return
+    }
+
+    listener(value)
+  }
+  cancel = broadcaster(repeatListener)
+
+  return cancel
+}
+
+export let repeatWhen = whenBroadcaster => broadcaster => listener => {
+  let cancel
+  let cancelWhen
+  let repeatListener = value => {
+    if (value === done) {
+      cancel()
+
+      cancelWhen = whenBroadcaster(() => {
+        cancelWhen()
+        cancel = broadcaster(repeatListener)
+      })
+      return
+    }
+
+    listener(value)
+  }
+  cancel = broadcaster(repeatListener)
+
+  return () => {
+    cancel()
+    if (cancelWhen) cancelWhen()
+  }
+}

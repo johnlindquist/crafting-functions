@@ -187,3 +187,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat-when-vs-start-when/?module=/src/index.js) 
 
+
+### doneIf 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/done-if) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/done-if/?module=/src/index.js) 
+
