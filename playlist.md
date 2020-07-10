@@ -194,3 +194,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/done-if/?module=/src/index.js) 
 
+
+### Sequence 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/sequence) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/sequence/?module=/src/index.js) 
+
