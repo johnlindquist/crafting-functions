@@ -2,6 +2,7 @@ import {
   addListener,
   done,
   createTimeout,
+  forOf,
 } from "./broadcasters"
 import { repeatWhen, filter, hardCode } from "./operators"
 import { pipe } from "lodash/fp"
@@ -41,7 +42,7 @@ let doneIf = condition => broadcaster => listener => {
 // score(inputClick)(console.log)
 
 let delayMessage = message =>
-  hardCode(message)(createTimeout(1500))
+  hardCode(message)(createTimeout(500))
 
 let sequence = (...broadcasters) => listener => {
   let broadcaster = broadcasters.shift()
@@ -62,12 +63,40 @@ let sequence = (...broadcasters) => listener => {
   }
 }
 
-let cancel = sequence(
-  delayMessage("Hello,"),
-  delayMessage("my"),
-  delayMessage("name"),
-  delayMessage("is"),
-  delayMessage("John!")
-)(console.log)
+let message = "Hello, my name is John!".split(" ")
 
-inputClick(cancel)
+let mapSequence = createBroadcaster => broadcaster => listener => {
+  let buffer = []
+  let innerBroadcaster
+  let innerListener = innerValue => {
+    if (innerValue === done) {
+      innerBroadcaster = null
+      if (buffer.length) {
+        let value = buffer.shift()
+        if (value === done) {
+          listener(done)
+          return
+        }
+        innerBroadcaster = createBroadcaster(value)
+        innerBroadcaster(innerListener)
+      }
+
+      return
+    }
+    listener(innerValue)
+  }
+  broadcaster(value => {
+    if (innerBroadcaster) {
+      buffer.push(value)
+    } else {
+      innerBroadcaster = createBroadcaster(value)
+      innerBroadcaster(innerListener)
+    }
+  })
+}
+
+let hiClick = hardCode("hi")(inputClick)
+
+mapSequence(word => delayMessage(word))(forOf(message))(
+  console.log
+)

@@ -201,3 +201,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/sequence/?module=/src/index.js) 
 
+
+### mapSequence 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-sequence) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-sequence/?module=/src/index.js) 
+
