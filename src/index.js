@@ -1,102 +1,47 @@
-import {
-  addListener,
-  done,
-  createTimeout,
-  forOf,
-} from "./broadcasters"
-import { repeatWhen, filter, hardCode } from "./operators"
-import { pipe } from "lodash/fp"
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  SyntheticEvent,
+} from "react"
+import ReactDOM from "react-dom"
+import { createInterval } from "./broadcasters"
+import { map, mapSequence } from "./operators"
 
-let inputClick = addListener("#input", "click")
+let useBroadcaster = broadcaster => {
+  let [state, setState] = useState(null)
+  useEffect(() => {
+    console.log("hmm")
+    return broadcaster(setState)
+  }, [])
 
-let state = broadcaster => listener => {
-  let state = 3
-  return broadcaster(value => {
-    state--
-    listener(state)
-  })
+  return state
 }
+let useListener = () => {
+  let listener
 
-let doneIf = condition => broadcaster => listener => {
-  let cancel = broadcaster(value => {
-    listener(value)
-    if (condition(value)) {
-      listener(done)
-      cancel()
-    }
-  })
-
-  return cancel
-}
-
-// let inputEnter = filter(event => event.key === "Enter")(
-//   addListener("#input", "keydown")
-// )
-
-// let score = pipe(
-//   state,
-//   doneIf(value => value === 0),
-//   repeatWhen(inputEnter)
-// )
-
-// score(inputClick)(console.log)
-
-let delayMessage = message =>
-  hardCode(message)(createTimeout(500))
-
-let sequence = (...broadcasters) => listener => {
-  let broadcaster = broadcasters.shift()
-  let cancel
-  let sequenceListener = value => {
-    if (value === done && broadcasters.length) {
-      let broadcaster = broadcasters.shift()
-      cancel = broadcaster(sequenceListener)
-      return
-    }
-    listener(value)
-  }
-
-  cancel = broadcaster(sequenceListener)
-
-  return () => {
-    cancel()
-  }
-}
-
-let message = "Hello, my name is John!".split(" ")
-
-let mapSequence = createBroadcaster => broadcaster => listener => {
-  let buffer = []
-  let innerBroadcaster
-  let innerListener = innerValue => {
-    if (innerValue === done) {
-      innerBroadcaster = null
-      if (buffer.length) {
-        let value = buffer.shift()
-        if (value === done) {
-          listener(done)
-          return
-        }
-        innerBroadcaster = createBroadcaster(value)
-        innerBroadcaster(innerListener)
-      }
-
-      return
-    }
-    listener(innerValue)
-  }
-  broadcaster(value => {
-    if (innerBroadcaster) {
-      buffer.push(value)
+  let callbackListener = value => {
+    if (typeof value === "function") {
+      listener = value
     } else {
-      innerBroadcaster = createBroadcaster(value)
-      innerBroadcaster(innerListener)
+      listener(value)
     }
-  })
+  }
+  return useCallback(callbackListener, [])
 }
 
-let hiClick = hardCode("hi")(inputClick)
+let App = () => {
+  let onInput = useListener()
+  let state = useBroadcaster(
+    map(event => event.target.value)(onInput)
+  )
+  return (
+    <div className="App">
+      <input type="text" onInput={onInput} />
+      <p>{state}</p>
+    </div>
+  )
+}
 
-mapSequence(word => delayMessage(word))(forOf(message))(
-  console.log
-)
+const rootElement = document.getElementById("app")
+ReactDOM.render(<App />, rootElement)
