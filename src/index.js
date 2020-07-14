@@ -23,7 +23,7 @@ let callbackListener = value => {
 
 let App = () => {
   let onInput = useCallback(callbackListener)
-  let state = useBroadcaster(onInput)
+  let state = useBroadcaster(targetValue(onInput))
   return (
     <div>
       <input type="text" onInput={onInput} />
