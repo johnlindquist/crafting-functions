@@ -1,5 +1,5 @@
 import { curry } from "lodash"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 export let done = Symbol("done")
 
 export let createTimeout = curry((time, listener) => {
@@ -107,4 +107,16 @@ export let useBroadcaster = (broadcaster, deps = []) => {
   }, deps)
 
   return state
+}
+
+export let useListener = (deps = []) => {
+  let listener
+  let callbackListener = value => {
+    if (typeof value === "function") {
+      listener = value
+      return
+    }
+    listener(value)
+  }
+  return useCallback(callbackListener, deps)
 }
