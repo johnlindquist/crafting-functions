@@ -162,3 +162,77 @@ export let repeatWhen = whenBroadcaster => broadcaster => listener => {
     if (cancelWhen) cancelWhen()
   }
 }
+
+export let state = broadcaster => listener => {
+  let state = 3
+  return broadcaster(value => {
+    state--
+    listener(state)
+  })
+}
+
+export let doneIf = condition => broadcaster => listener => {
+  let cancel = broadcaster(value => {
+    listener(value)
+    if (condition(value)) {
+      listener(done)
+      cancel()
+    }
+  })
+
+  return cancel
+}
+
+export let sequence = (...broadcasters) => listener => {
+  let broadcaster = broadcasters.shift()
+  let cancel
+  let sequenceListener = value => {
+    if (value === done && broadcasters.length) {
+      let broadcaster = broadcasters.shift()
+      cancel = broadcaster(sequenceListener)
+      return
+    }
+    listener(value)
+  }
+
+  cancel = broadcaster(sequenceListener)
+
+  return () => {
+    cancel()
+  }
+}
+
+export let mapSequence = createBroadcaster => broadcaster => listener => {
+  let cancel
+  let buffer = []
+  let innerBroadcaster
+  let innerListener = innerValue => {
+    if (innerValue === done) {
+      innerBroadcaster = null
+      if (buffer.length) {
+        let value = buffer.shift()
+        if (value === done) {
+          listener(done)
+          return
+        }
+        innerBroadcaster = createBroadcaster(value)
+        cancel = innerBroadcaster(innerListener)
+      }
+
+      return
+    }
+    listener(innerValue)
+  }
+  broadcaster(value => {
+    if (innerBroadcaster) {
+      buffer.push(value)
+    } else {
+      innerBroadcaster = createBroadcaster(value)
+      cancel = innerBroadcaster(innerListener)
+    }
+  })
+
+  return () => {
+    cancel()
+  }
+}

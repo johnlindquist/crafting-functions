@@ -208,3 +208,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-sequence/?module=/src/index.js) 
 
+
+### Adding-React 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/adding-react) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/adding-react/?module=/src/index.js) 
+
