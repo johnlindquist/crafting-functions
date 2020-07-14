@@ -1,20 +1,35 @@
-import { createInterval } from "./broadcasters"
+import {
+  createInterval,
+  useBroadcaster,
+} from "./broadcasters"
 
-import React, { useState, useEffect } from "react"
+import { targetValue } from "./operators"
+
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+} from "react"
 import { render } from "react-dom"
 
-let useBroadcaster = (broadcaster, deps = []) => {
-  let [state, setState] = useState("Hi")
-  useEffect(() => {
-    broadcaster(setState)
-  }, deps)
-
-  return state
+let listener
+let callbackListener = value => {
+  if (typeof value === "function") {
+    listener = value
+    return
+  }
+  listener(value)
 }
 
 let App = () => {
-  let state = useBroadcaster(createInterval(1000))
-  return <div>{state}</div>
+  let onInput = useCallback(callbackListener)
+  let state = useBroadcaster(onInput)
+  return (
+    <div>
+      <input type="text" onInput={onInput} />
+      <p>{state}</p>
+    </div>
+  )
 }
 
 render(<App></App>, document.querySelector("#root"))

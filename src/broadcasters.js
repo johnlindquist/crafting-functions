@@ -1,4 +1,5 @@
 import { curry } from "lodash"
+import { useState, useEffect } from "react"
 export let done = Symbol("done")
 
 export let createTimeout = curry((time, listener) => {
@@ -98,3 +99,12 @@ export let forOf = curry((iterable, listener) => {
     clearTimeout(id)
   }
 })
+
+export let useBroadcaster = (broadcaster, deps = []) => {
+  let [state, setState] = useState(null)
+  useEffect(() => {
+    broadcaster(setState)
+  }, deps)
+
+  return state
+}
