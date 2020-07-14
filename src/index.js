@@ -1,15 +1,14 @@
-import {
-  addListener,
-  done,
-  createTimeout,
-  forOf,
-} from "./broadcasters"
-import { repeatWhen, filter, hardCode } from "./operators"
-import { pipe } from "lodash/fp"
+import { createInterval } from "./broadcasters"
 
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { render } from "react-dom"
 
-let App = () => <div>Hello</div>
+let App = () => {
+  let [state, setState] = useState("Hi")
+  useEffect(() => {
+    createInterval(1000)(setState)
+  }, [])
+  return <div>{state}</div>
+}
 
 render(<App></App>, document.querySelector("#root"))
