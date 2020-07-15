@@ -11,35 +11,32 @@ import {
   mapSequence,
   hardCode,
   targetValue,
-  filter,
+  filterByKey,
+  mapBroadcaster,
+  allowWhen,
 } from "./operators"
 
-let message = "Hi, my name is John!".split(" ")
+import { pipe } from "lodash/fp"
+
 let delayMessage = value =>
   hardCode(value)(createTimeout(500))
 
-let broadcaster = mapSequence(delayMessage)(forOf(message))
-
-let allowWhen = allowBroadcaster => broadcaster => listener => {
-  let current
-  broadcaster(value => {
-    current = value
-  })
-
-  allowBroadcaster(() => {
-    listener(current)
-  })
-}
+let messageSequence = message =>
+  mapSequence(delayMessage)(forOf(message.split(" ")))
 
 let App = () => {
   let onInput = useListener()
   let onKeyPress = useListener()
 
   let inputValue = targetValue(onInput)
-  let enter = filter(event => event.key === "Enter")(
-    onKeyPress
-  )
-  let state = useBroadcaster(allowWhen(enter)(inputValue))
+  let enter = filterByKey("Enter")(onKeyPress)
+
+  let inputToMessage = pipe(
+    allowWhen(enter),
+    mapBroadcaster(messageSequence)
+  )(inputValue)
+
+  let state = useBroadcaster(inputToMessage)
 
   return (
     <div>
