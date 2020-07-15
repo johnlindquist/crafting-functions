@@ -250,3 +250,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener/?module=/src/index.js) 
 
+
+### useListener-Explained 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener-explained) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-explained/?module=/src/index.js) 
+
