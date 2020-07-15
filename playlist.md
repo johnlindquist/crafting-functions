@@ -278,3 +278,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-input-map-sequence/?module=/src/index.js) 
 
+
+### Debounce 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/debounce) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/debounce/?module=/src/index.js) 
+

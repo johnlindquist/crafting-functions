@@ -11,9 +11,8 @@ import {
   mapSequence,
   hardCode,
   targetValue,
-  filterByKey,
   mapBroadcaster,
-  allowWhen,
+  waitFor,
 } from "./operators"
 
 import { pipe } from "lodash/fp"
@@ -26,13 +25,11 @@ let messageSequence = message =>
 
 let App = () => {
   let onInput = useListener()
-  let onKeyPress = useListener()
 
   let inputValue = targetValue(onInput)
-  let enter = filterByKey("Enter")(onKeyPress)
 
   let inputToMessage = pipe(
-    allowWhen(enter),
+    waitFor(500),
     mapBroadcaster(messageSequence)
   )(inputValue)
 
@@ -40,11 +37,7 @@ let App = () => {
 
   return (
     <div>
-      <input
-        type="text"
-        onInput={onInput}
-        onKeyPress={onKeyPress}
-      />
+      <input type="text" onInput={onInput} />
       <p>{state}</p>
     </div>
   )

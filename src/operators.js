@@ -1,5 +1,5 @@
 import { curry } from "lodash"
-import { done } from "./broadcasters"
+import { done, createTimeout } from "./broadcasters"
 
 let createOperator = curry(
   (operator, broadcaster, listener) => {
@@ -253,3 +253,18 @@ export let allowWhen = allowBroadcaster => broadcaster => listener => {
 
 export let filterByKey = key =>
   filter(event => event.key === key)
+
+export let waitFor = time => broadcaster => listener => {
+  let cancelTimeout
+  let cancel = broadcaster(value => {
+    if (cancelTimeout) cancelTimeout()
+    cancelTimeout = createTimeout(time)(() => {
+      listener(value)
+    })
+  })
+
+  return () => {
+    cancelTimeout()
+    cancel()
+  }
+}
