@@ -257,3 +257,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-explained/?module=/src/index.js) 
 
+
+### React-mapSequence 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-map-sequence) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-map-sequence/?module=/src/index.js) 
+

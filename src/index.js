@@ -1,12 +1,23 @@
 import React from "react"
 import { render } from "react-dom"
 
-import { useBroadcaster, useListener } from "./broadcasters"
-import { targetValue } from "./operators"
+import {
+  useBroadcaster,
+  useListener,
+  forOf,
+  createTimeout,
+} from "./broadcasters"
+import { mapSequence, hardCode } from "./operators"
+
+let message = "Hi, my name is John!".split(" ")
+let delayMessage = value =>
+  hardCode(value)(createTimeout(500))
+
+let broadcaster = mapSequence(delayMessage)(forOf(message))
 
 let App = () => {
   let onInput = useListener()
-  let state = useBroadcaster(targetValue(onInput))
+  let state = useBroadcaster(broadcaster)
 
   return (
     <div>
