@@ -163,10 +163,11 @@ export let repeatWhen = whenBroadcaster => broadcaster => listener => {
   }
 }
 
-export let state = broadcaster => listener => {
-  let state = 3
-  return broadcaster(value => {
-    state--
+export let state = initial => broadcaster => listener => {
+  let state = initial
+  listener(state)
+  return broadcaster(fn => {
+    state = fn(state)
     listener(state)
   })
 }

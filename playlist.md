@@ -250,3 +250,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener/?module=/src/index.js) 
 
+
+### React-Counter 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-counter) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-counter/?module=/src/index.js) 
+
