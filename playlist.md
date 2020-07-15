@@ -264,3 +264,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-map-sequence/?module=/src/index.js) 
 
+
+### React-Input-Enter 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-input-enter) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-input-enter/?module=/src/index.js) 
+
