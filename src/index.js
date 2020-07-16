@@ -20,9 +20,7 @@ import { pipe } from "lodash/fp"
 //https://api.github.com/users/johnlindquist
 
 let getURL = url => listener => {
-  let controller = new AbortController()
-  let signal = controller.signal
-  fetch(url, { signal })
+  fetch(url)
     .then(response => {
       return response.json()
     })
@@ -31,7 +29,7 @@ let getURL = url => listener => {
     })
 
   return () => {
-    controller.abort()
+    //cancel
   }
 }
 
@@ -39,7 +37,7 @@ let cancel = getURL(
   "https://api.github.com/users/johnlindquist"
 )(console.log)
 
-cancel()
+console.log(cancel)
 
 let delayMessage = value =>
   hardCode(value)(createTimeout(500))
