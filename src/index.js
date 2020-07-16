@@ -17,6 +17,30 @@ import {
 
 import { pipe } from "lodash/fp"
 
+//https://api.github.com/users/johnlindquist
+
+let getURL = url => listener => {
+  let controller = new AbortController()
+  let signal = controller.signal
+  fetch(url, { signal })
+    .then(response => {
+      return response.json()
+    })
+    .then(json => {
+      listener(json)
+    })
+
+  return () => {
+    controller.abort()
+  }
+}
+
+let cancel = getURL(
+  "https://api.github.com/users/johnlindquist"
+)(console.log)
+
+cancel()
+
 let delayMessage = value =>
   hardCode(value)(createTimeout(500))
 
@@ -35,10 +59,16 @@ let App = () => {
 
   let state = useBroadcaster(inputToMessage)
 
+  let profile = useBroadcaster(
+    getURL("https://api.github.com/users/johnlindquist"),
+    { login: "" }
+  )
+
   return (
     <div>
       <input type="text" onInput={onInput} />
       <p>{state}</p>
+      <p>{profile.login}</p>
     </div>
   )
 }

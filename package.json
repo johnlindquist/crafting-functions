@@ -20,7 +20,7 @@
     "javascript",
     "starter"
   ],
-  "browserlist": [
+  "browserslist": [
     "last 1 Chrome versions"
   ]
 }
