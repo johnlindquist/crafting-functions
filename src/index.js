@@ -15,7 +15,23 @@ import {
   waitFor,
 } from "./operators"
 
+//https://bit.ly/star-api
+let URL = "https://o9jknolj9z.sse.codesandbox.io/"
+let query = "people?name_like=luke"
+
 import { pipe } from "lodash/fp"
+
+let getURL = url => listener => {
+  let controller = new AbortController()
+  let signal = controller.signal
+  fetch(url, { signal })
+    .then(response => response.json())
+    .then(listener)
+
+  return () => {
+    controller.abort()
+  }
+}
 
 let delayMessage = value =>
   hardCode(value)(createTimeout(500))
@@ -30,15 +46,24 @@ let App = () => {
 
   let inputToMessage = pipe(
     waitFor(500),
-    mapBroadcaster(messageSequence)
+    mapBroadcaster(name =>
+      getURL(URL + "people?name_like=" + name)
+    )
   )(inputValue)
 
-  let state = useBroadcaster(inputToMessage)
+  let people = useBroadcaster(inputToMessage, [])
 
   return (
     <div>
       <input type="text" onInput={onInput} />
-      <p>{state}</p>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {people.map(person => (
+          <div key={person.id}>
+            <p>{person.name}</p>
+            <img src={URL + person.image} alt="" />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

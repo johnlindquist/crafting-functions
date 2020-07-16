@@ -285,3 +285,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/debounce/?module=/src/index.js) 
 
+
+### React-Live-Search-Working 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-live-search-working) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search-working/?module=/src/index.js) 
+
