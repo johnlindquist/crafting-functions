@@ -19,6 +19,17 @@ import { pipe } from "lodash/fp"
 
 //https://api.github.com/users/johnlindquist
 
+let mapError = transform => broadcaster => listener => {
+  return broadcaster(value => {
+    if (value instanceof Error) {
+      listener(transform(value))
+      return
+    }
+
+    listener(value)
+  })
+}
+
 let getURL = url => listener => {
   let controller = new AbortController()
   let signal = controller.signal
@@ -29,14 +40,17 @@ let getURL = url => listener => {
     .then(json => {
       listener(json)
     })
+    .catch(error => {
+      listener(error)
+    })
 
   return () => {
     controller.abort()
   }
 }
 
-let cancel = getURL(
-  "https://api.github.com/users/johnlindquist"
+let cancel = mapError(error => ({ login: error.message }))(
+  getURL("https://api.github.com/users/johnlindquist")
 )(console.log)
 
 cancel()

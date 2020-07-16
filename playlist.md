@@ -298,3 +298,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/fetch-broadcaster-cancel/?module=/src/index.js) 
 
+
+### mapError 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-error) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-error/?module=/src/index.js) 
+
