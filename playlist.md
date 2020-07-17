@@ -305,3 +305,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-error/?module=/src/index.js) 
 
+
+### React-Live-Search 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-live-search) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search/?module=/src/index.js) 
+

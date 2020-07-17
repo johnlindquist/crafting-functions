@@ -13,11 +13,10 @@ import {
   targetValue,
   mapBroadcaster,
   waitFor,
+  map,
 } from "./operators"
 
 import { pipe } from "lodash/fp"
-
-//https://api.github.com/users/johnlindquist
 
 let mapError = transform => broadcaster => listener => {
   return broadcaster(value => {
@@ -29,6 +28,8 @@ let mapError = transform => broadcaster => listener => {
     listener(value)
   })
 }
+
+//https://openlibrary.org/search.json?q=starsight
 
 let getURL = url => listener => {
   let controller = new AbortController()
@@ -49,40 +50,33 @@ let getURL = url => listener => {
   }
 }
 
-let cancel = mapError(error => ({ login: error.message }))(
-  getURL("https://api.github.com/users/johnlindquist")
-)(console.log)
-
-cancel()
-
-let delayMessage = value =>
-  hardCode(value)(createTimeout(500))
-
-let messageSequence = message =>
-  mapSequence(delayMessage)(forOf(message.split(" ")))
-
 let App = () => {
   let onInput = useListener()
 
   let inputValue = targetValue(onInput)
 
-  let inputToMessage = pipe(
+  let inputToBookSearch = pipe(
     waitFor(500),
-    mapBroadcaster(messageSequence)
+    map(
+      name =>
+        `https://openlibrary.org/search.json?q=${name}`
+    ),
+    mapBroadcaster(getURL),
+    map(result => result.docs)
   )(inputValue)
 
-  let state = useBroadcaster(inputToMessage)
-
-  let profile = useBroadcaster(
-    getURL("https://api.github.com/users/johnlindquist"),
-    { login: "" }
-  )
+  let books = useBroadcaster(inputToBookSearch, [])
 
   return (
     <div>
       <input type="text" onInput={onInput} />
-      <p>{state}</p>
-      <p>{profile.login}</p>
+      {books.map(book => (
+        <div key={book.key}>
+          <a href={`https://openlibrary.org${book.key}`}>
+            {book.title}
+          </a>
+        </div>
+      ))}
     </div>
   )
 }
