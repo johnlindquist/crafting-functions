@@ -319,3 +319,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search-bugs/?module=/src/index.js) 
 
+
+### useListener-Multiple-Listeners-and-Merge 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge/?module=/src/index.js) 
+

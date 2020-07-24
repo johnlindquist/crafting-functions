@@ -6,6 +6,7 @@ import {
   useListener,
   forOf,
   createTimeout,
+  merge,
 } from "./broadcasters"
 import {
   mapSequence,
@@ -67,7 +68,15 @@ let App = () => {
     map(result => result.docs)
   )(inputValue)
 
-  let books = useBroadcaster(inputToBookSearch, [])
+  let inputToClearSearch = pipe(
+    filter(name => name.length < 2),
+    map(name => [])
+  )(inputValue)
+
+  let books = useBroadcaster(
+    merge(inputToBookSearch, inputToClearSearch),
+    []
+  )
 
   return (
     <div>
