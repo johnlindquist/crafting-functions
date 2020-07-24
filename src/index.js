@@ -14,6 +14,7 @@ import {
   mapBroadcaster,
   waitFor,
   map,
+  filter,
 } from "./operators"
 
 import { pipe } from "lodash/fp"
@@ -57,6 +58,7 @@ let App = () => {
 
   let inputToBookSearch = pipe(
     waitFor(500),
+    filter(name => name.length > 3),
     map(
       name =>
         `https://openlibrary.org/search.json?q=${name}`

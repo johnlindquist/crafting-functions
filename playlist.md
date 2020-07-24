@@ -312,3 +312,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search/?module=/src/index.js) 
 
+
+### React-Live-Search-Bugs 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-live-search-bugs) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search-bugs/?module=/src/index.js) 
+
