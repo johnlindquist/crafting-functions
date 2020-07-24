@@ -319,3 +319,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search-bugs/?module=/src/index.js) 
 
+
+### ifElse-Operator 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/if-else-operator) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/if-else-operator/?module=/src/index.js) 
+

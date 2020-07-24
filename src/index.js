@@ -51,6 +51,24 @@ let getURL = url => listener => {
   }
 }
 
+let ifElse = (
+  condition,
+  ifOp,
+  elseOp
+) => broadcaster => listener => {
+  broadcaster(value => {
+    let immediateBroadcaster = innerListener =>
+      innerListener(value)
+    if (condition(value)) {
+      //if
+      ifOp(immediateBroadcaster)(listener)
+    } else {
+      //else
+      elseOp(immediateBroadcaster)(listener)
+    }
+  })
+}
+
 let App = () => {
   let onInput = useListener()
 
@@ -58,13 +76,18 @@ let App = () => {
 
   let inputToBookSearch = pipe(
     waitFor(500),
-    filter(name => name.length > 3),
-    map(
-      name =>
-        `https://openlibrary.org/search.json?q=${name}`
-    ),
-    mapBroadcaster(getURL),
-    map(result => result.docs)
+    ifElse(
+      name => name.length > 3,
+      pipe(
+        map(
+          name =>
+            `https://openlibrary.org/search.json?q=${name}`
+        ),
+        mapBroadcaster(getURL),
+        map(result => result.docs)
+      ),
+      map(() => [])
+    )
   )(inputValue)
 
   let books = useBroadcaster(inputToBookSearch, [])
