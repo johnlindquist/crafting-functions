@@ -1,328 +1,276 @@
+## Lessons I need to backfill
 
-### Wrap-Settimeout 
+- Defining a Broadcaster
+- Defining a Listener
+- Defining an Operator
+- What is a "Callback"
+- What is a Closure
+- What is a Buffer
+- Explaining the Purpose of the Course
+- And more...
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/wrap-settimeout) 
+### Create a Function to Configure setTimeout
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/wrap-settimeout/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/wrap-settimeout)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/wrap-settimeout/?module=/src/index.js)
 
-### Returning-Functions 
+### Return a Function to Cancel an Async Behavior
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/returning-functions) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/returning-functions)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/returning-functions/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/returning-functions/?module=/src/index.js)
 
+### Wrap addEventListener in a Function for More Control
 
-### addListener 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/add-listener)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/add-listener) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/add-listener/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/add-listener/?module=/src/index.js) 
+### Create a Utility Function to Control setInterval
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/create-interval)
 
-### createInterval 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/create-interval/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/create-interval) 
+### Combine Multiple Async Behaviors with a Merge Function
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/create-interval/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/merge)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/merge/?module=/src/index.js)
 
-### Merge 
+### Use Lodash Curry When Functions Return Functions
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/merge) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/lodash-curry)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/merge/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/lodash-curry/?module=/src/index.js)
 
+### Match Function Requirements with Lodash Partial and Flip
 
-### Lodash-Curry 
+- I'm not really sure if this lesson is useful...
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/lodash-curry) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/lodash-partial)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/lodash-curry/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/lodash-partial/?module=/src/index.js)
 
+### Create a Buffer to Pair Values Together with Zip
 
-### Lodash-Partial 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/zip)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/lodash-partial) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/zip/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/lodash-partial/?module=/src/index.js) 
+### Pass an Array to a Callback with a forOf Function
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/for-of)
 
-### Zip 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/for-of/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/zip) 
+### Pass a Done Symbol when an Async Function is Done
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/zip/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/done)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/done/?module=/src/index.js)
 
-### Zip 
+### Create an Operator Function to Modify Behaviors
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/zip) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/operator)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/zip/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/operator/?module=/src/index.js)
 
+### Transform Values with a Map Operator
 
-### forOf 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/for-of) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/for-of/?module=/src/index.js) 
+### Prevent Certain Values with a Filter Operator
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/filter)
 
-### Done 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/filter/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/done) 
+### Use Pipe to Clean Up Functions Wrapping Functions
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/done/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/compose-pipe)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/compose-pipe/?module=/src/index.js)
 
-### Operator 
+### Start With the API You Want Then Implement
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/operator) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/design-api)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/operator/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/design-api/?module=/src/index.js)
 
+### Define a Function to Set Common Behaviors in Operators
 
-### Map 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/create-operator)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/create-operator/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map/?module=/src/index.js) 
+### Use Buffers to Store Values Until a Condition is Met
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/split)
 
-### Filter 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/split/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/filter) 
+### Building a Counter UI by Composing Callbacks
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/filter/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/counter)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/counter/?module=/src/index.js)
 
-### Compose-Pipe 
+### Building a Timer UI by Composing Callbacks
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/compose-pipe) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/start-stop-timer)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/compose-pipe/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/start-stop-timer/?module=/src/index.js)
 
+### Building a Word Matching Game by Composing Callbacks
 
-### Design-Api 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/hangman)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/design-api) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/design-api/?module=/src/index.js) 
+### Create a Win Condition with a mapDone Operator
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/hangman-win)
 
-### createOperator 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman-win/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/create-operator) 
+###
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/create-operator/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeaat)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeaat/?module=/src/index.js)
 
-### Split 
+### Repeat When Done with a Repeat Operator
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/split) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeat)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/split/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat/?module=/src/index.js)
 
+### Repeat When Another Broadcaster Fires
 
-### Counter 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeat-when)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/counter) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat-when/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/counter/?module=/src/index.js) 
+### Comparing Repeat to Start
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeat-when-vs-start-when)
 
-### Counter 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat-when-vs-start-when/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/counter) 
+### Marking Done Based on a Condition
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/counter/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/done-if)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/done-if/?module=/src/index.js)
 
-### Start-Stop-Timer 
+### Create a Sequence of Broadcasters
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/start-stop-timer) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/sequence)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/start-stop-timer/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/sequence/?module=/src/index.js)
 
+### Map a Sequence Based on Values
 
-### Hangman 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-sequence)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/hangman) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-sequence/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman/?module=/src/index.js) 
+### Adding React to a Vanilla Parcel Project
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/adding-react)
 
-### Hangman-Win 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/adding-react/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/hangman-win) 
+### Create a Broadcaster in React with useState and useEffect Hooks
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/hangman-win/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-first-broadcaster)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-first-broadcaster/?module=/src/index.js)
 
-### Repeaat 
+### Create a Custom useBroadcaster Hook
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeaat) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-broadcaster)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeaat/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-broadcaster/?module=/src/index.js)
 
+### Pass a Listener to a useCallback Hook
 
-### Repeat 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/callback-listener)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeat) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/callback-listener/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat/?module=/src/index.js) 
+### Create a Custom useListener Hook Around useCallback
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener)
 
-### Repeat-When 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeat-when) 
+### Explaining the useListener Code
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat-when/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener-explained)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-explained/?module=/src/index.js)
 
-### repeatWhen-vs-startWhen 
+### Map a Sequence of Broadcasters in React
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/repeat-when-vs-start-when) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-map-sequence)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/repeat-when-vs-start-when/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-map-sequence/?module=/src/index.js)
 
+### Handling an Enter Keypress with useListener and React
 
-### doneIf 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-input-enter)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/done-if) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-input-enter/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/done-if/?module=/src/index.js) 
+### Map a Sequence Based on Input Text in React
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-input-map-sequence)
 
-### Sequence 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-input-map-sequence/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/sequence) 
+### Creating a Debounce Operator to Limit Listener Calls
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/sequence/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/debounce)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/debounce/?module=/src/index.js)
 
-### mapSequence 
+### Wrap Fetch in a Broadcaster in React
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-sequence) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/fetch-broadcaster)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-sequence/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/fetch-broadcaster/?module=/src/index.js)
 
+### Cancel a Fetch Request with a Broadcaster and React
 
-### Adding-React 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/fetch-broadcaster-cancel)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/adding-react) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/fetch-broadcaster-cancel/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/adding-react/?module=/src/index.js) 
+### Map an Error to a Broadcaster Value in React
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-error)
 
-### React-First-Broadcaster 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-error/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-first-broadcaster) 
+### Build a Live Search Box with useBroadcaster and useListener in React
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-first-broadcaster/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-live-search)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search/?module=/src/index.js)
 
-### useBroadcaster 
+### Fixing Bugs in Our Live Search Box
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-broadcaster) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-live-search-bugs)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-broadcaster/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search-bugs/?module=/src/index.js)
 
+### Merge Multiple useListener Hooks in React
 
-### callbackListener 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/callback-listener) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/callback-listener/?module=/src/index.js) 
-
-
-### useListener 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener/?module=/src/index.js) 
-
-
-### useListener 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener/?module=/src/index.js) 
-
-
-### useListener-Explained 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener-explained) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-explained/?module=/src/index.js) 
-
-
-### React-mapSequence 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-map-sequence) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-map-sequence/?module=/src/index.js) 
-
-
-### React-Input-Enter 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-input-enter) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-input-enter/?module=/src/index.js) 
-
-
-### React-Input-Map-Sequence 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-input-map-sequence) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-input-map-sequence/?module=/src/index.js) 
-
-
-### Debounce 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/debounce) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/debounce/?module=/src/index.js) 
-
-### Fetch-Broadcaster 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/fetch-broadcaster) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/fetch-broadcaster/?module=/src/index.js) 
-
-
-### Fetch-Broadcaster-Cancel 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/fetch-broadcaster-cancel) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/fetch-broadcaster-cancel/?module=/src/index.js) 
-
-
-### mapError 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-error) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-error/?module=/src/index.js) 
-
-
-### React-Live-Search 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-live-search) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search/?module=/src/index.js) 
-
-
-### React-Live-Search-Bugs 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-live-search-bugs) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-live-search-bugs/?module=/src/index.js) 
-
-
-### useListener-Multiple-Listeners-and-Merge 
-
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge) 
-
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge/?module=/src/index.js) 
-
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge/?module=/src/index.js)
