@@ -8,6 +8,8 @@
 - What is a Buffer
 - Explaining the Purpose of the Course
 - And more...
+- CACHING!
+- Distinct Until Changed
 
 ### Create a Function to Configure setTimeout
 
