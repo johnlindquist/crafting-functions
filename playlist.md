@@ -283,3 +283,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug/?module=/src/index.js) 
 
+
+### mapBroadcasterCache 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-broadcaster-cache) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-broadcaster-cache/?module=/src/index.js) 
+

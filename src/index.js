@@ -52,6 +52,22 @@ let getURL = url => listener => {
   }
 }
 
+export let mapBroadcasterCache = createBroadcaster => broadcaster => listener => {
+  let cache = new Map()
+  return broadcaster(value => {
+    if (cache.has(value)) {
+      listener(cache.get(value))
+      return
+    }
+    let newBroadcaster = createBroadcaster(value)
+    newBroadcaster(newValue => {
+      cache.set(value, newValue)
+      console.log(cache)
+      listener(newValue)
+    })
+  })
+}
+
 let App = () => {
   let onInput = useListener()
 
@@ -64,7 +80,7 @@ let App = () => {
       name =>
         `https://openlibrary.org/search.json?q=${name}`
     ),
-    mapBroadcaster(getURL),
+    mapBroadcasterCache(getURL),
     map(result => result.docs)
   )(inputValue)
 
