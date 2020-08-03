@@ -276,3 +276,10 @@
 [Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge)
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge/?module=/src/index.js)
+
+### Vs-React 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/vs-react) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/vs-react/?module=/src/index.js) 
+

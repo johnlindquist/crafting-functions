@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { render } from "react-dom"
 
 import {
@@ -53,34 +53,77 @@ let getURL = url => listener => {
 }
 
 let App = () => {
-  let onInput = useListener()
+  // let onInput = useListener()
 
-  let inputValue = targetValue(onInput)
+  // let inputValue = targetValue(onInput)
 
-  let inputToBookSearch = pipe(
-    waitFor(500),
-    filter(name => name.length > 3),
-    map(
-      name =>
-        `https://openlibrary.org/search.json?q=${name}`
-    ),
-    mapBroadcaster(getURL),
-    map(result => result.docs)
-  )(inputValue)
+  // let inputToBookSearch = pipe(
+  //   filter(name => name.length > 3),
+  //   waitFor(500),
+  //   map(
+  //     name =>
+  //       `https://openlibrary.org/search.json?q=${name}`
+  //   ),
+  //   mapBroadcaster(getURL),
+  //   map(result => result.docs)
+  // )(inputValue)
 
-  let inputToClearSearch = pipe(
-    filter(name => name.length < 2),
-    map(name => [])
-  )(inputValue)
+  // let inputToClearSearch = pipe(
+  //   filter(name => name.length < 2),
+  //   map(name => [])
+  // )(inputValue)
 
-  let books = useBroadcaster(
-    merge(inputToBookSearch, inputToClearSearch),
-    []
-  )
+  // let books = useBroadcaster(
+  //   merge(inputToBookSearch, inputToClearSearch),
+  //   []
+  // )
+
+  let [name, setInputValue] = useState("")
+  let [books, setBooks] = useState([])
+  let firstRef = useRef(true)
+  let timeoutRef = useRef()
+  let controllerRef = useRef()
+  useEffect(() => {
+    if (firstRef.current) {
+      firstRef.current = false
+      return
+    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    if (controllerRef.current) controllerRef.current.abort()
+
+    controllerRef.current = new AbortController()
+    let signal = controllerRef.current.signal
+    timeoutRef.current = setTimeout(async () => {
+      if (name.length > 3) {
+        try {
+          let response = await fetch(
+            `https://openlibrary.org/search.json?q=${name}`,
+            { signal }
+          )
+          let json = await response.json()
+          setBooks(json.docs)
+        } catch (error) {}
+      }
+
+      if (name.length < 3) {
+        setBooks([])
+      }
+    }, 500)
+
+    return () => {
+      if (timeoutRef.current)
+        clearTimeout(timeoutRef.current)
+      if (controllerRef.current)
+        controllerRef.current.abort()
+    }
+  }, [name])
 
   return (
     <div>
-      <input type="text" onInput={onInput} />
+      <input
+        type="text"
+        onInput={event => setInputValue(event.target.value)}
+      />
       {books.map(book => (
         <div key={book.key}>
           <a href={`https://openlibrary.org${book.key}`}>
