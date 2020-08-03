@@ -258,7 +258,8 @@ export let waitFor = time => broadcaster => listener => {
   let cancelTimeout
   let cancel = broadcaster(value => {
     if (cancelTimeout) cancelTimeout()
-    cancelTimeout = createTimeout(time)(() => {
+    cancelTimeout = createTimeout(time)(timeoutValue => {
+      if (timeoutValue === done) return
       listener(value)
     })
   })

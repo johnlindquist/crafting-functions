@@ -276,3 +276,10 @@
 [Go to branch](https://github.com/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge)
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge/?module=/src/index.js)
+
+### Return-of-the-Timeout-Bug 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug/?module=/src/index.js) 
+
