@@ -290,3 +290,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-broadcaster-cache/?module=/src/index.js) 
 
+
+### Caching and Canceling 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/caching-and-canceling) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/caching-and-canceling/?module=/src/index.js) 
+

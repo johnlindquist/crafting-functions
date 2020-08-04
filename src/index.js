@@ -31,6 +31,16 @@ let mapError = transform => broadcaster => listener => {
   })
 }
 
+let ignoreError = broadcaster => listener => {
+  return broadcaster(value => {
+    if (value instanceof Error) {
+      return
+    }
+
+    listener(value)
+  })
+}
+
 //https://openlibrary.org/search.json?q=starsight
 
 let getURL = url => listener => {
@@ -48,20 +58,30 @@ let getURL = url => listener => {
     })
 
   return () => {
+    console.log(`aborting`)
     controller.abort()
   }
 }
 
 export let mapBroadcasterCache = createBroadcaster => broadcaster => listener => {
   let cache = new Map()
+  let cancel
   return broadcaster(value => {
+    if (cancel) {
+      console.log(`attempting cancel`)
+      cancel()
+    }
+
     if (cache.has(value)) {
       listener(cache.get(value))
       return
     }
+
     let newBroadcaster = createBroadcaster(value)
-    newBroadcaster(newValue => {
-      cache.set(value, newValue)
+    cancel = newBroadcaster(newValue => {
+      if (!(newValue instanceof Error)) {
+        cache.set(value, newValue)
+      }
       console.log(cache)
       listener(newValue)
     })
@@ -81,6 +101,7 @@ let App = () => {
         `https://openlibrary.org/search.json?q=${name}`
     ),
     mapBroadcasterCache(getURL),
+    ignoreError,
     map(result => result.docs)
   )(inputValue)
 
