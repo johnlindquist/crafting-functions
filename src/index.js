@@ -1,130 +1,37 @@
 import React from "react"
 import { render } from "react-dom"
-
 import {
   useBroadcaster,
   useListener,
   forOf,
-  createTimeout,
-  merge,
 } from "./broadcasters"
 import {
-  mapSequence,
-  hardCode,
   targetValue,
   mapBroadcaster,
-  waitFor,
+  stringConcat,
   map,
-  filter,
 } from "./operators"
 
 import { pipe } from "lodash/fp"
 
-let mapError = transform => broadcaster => listener => {
-  return broadcaster(value => {
-    if (value instanceof Error) {
-      listener(transform(value))
-      return
-    }
-
-    listener(value)
-  })
-}
-
-let ignoreError = broadcaster => listener => {
-  return broadcaster(value => {
-    if (value instanceof Error) {
-      return
-    }
-
-    listener(value)
-  })
-}
-
-//https://openlibrary.org/search.json?q=starsight
-
-let getURL = url => listener => {
-  let controller = new AbortController()
-  let signal = controller.signal
-  fetch(url, { signal })
-    .then(response => {
-      return response.json()
-    })
-    .then(json => {
-      listener(json)
-    })
-    .catch(error => {
-      listener(error)
-    })
-
-  return () => {
-    console.log(`aborting`)
-    controller.abort()
-  }
-}
-
-export let mapBroadcasterCache = createBroadcaster => broadcaster => listener => {
-  let cache = new Map()
-  let cancel
-  return broadcaster(value => {
-    if (cancel) {
-      console.log(`attempting cancel`)
-      cancel()
-    }
-
-    if (cache.has(value)) {
-      listener(cache.get(value))
-      return
-    }
-
-    let newBroadcaster = createBroadcaster(value)
-    cancel = newBroadcaster(newValue => {
-      if (!(newValue instanceof Error)) {
-        cache.set(value, newValue)
-      }
-      console.log(cache)
-      listener(newValue)
-    })
-  })
-}
+let game = pipe(
+  mapBroadcaster(value => {
+    return map(letter =>
+      value.includes(letter) ? letter : "*"
+    )(forOf("honeycomb"))
+  }),
+  stringConcat
+)
 
 let App = () => {
   let onInput = useListener()
 
   let inputValue = targetValue(onInput)
-
-  let inputToBookSearch = pipe(
-    waitFor(500),
-    filter(name => name.length > 3),
-    map(
-      name =>
-        `https://openlibrary.org/search.json?q=${name}`
-    ),
-    mapBroadcasterCache(getURL),
-    ignoreError,
-    map(result => result.docs)
-  )(inputValue)
-
-  let inputToClearSearch = pipe(
-    filter(name => name.length < 2),
-    map(name => [])
-  )(inputValue)
-
-  let books = useBroadcaster(
-    merge(inputToBookSearch, inputToClearSearch),
-    []
-  )
-
+  let result = useBroadcaster(game(inputValue), "")
   return (
     <div>
       <input type="text" onInput={onInput} />
-      {books.map(book => (
-        <div key={book.key}>
-          <a href={`https://openlibrary.org${book.key}`}>
-            {book.title}
-          </a>
-        </div>
-      ))}
+      <p>{result}</p>
     </div>
   )
 }
