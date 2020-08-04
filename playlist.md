@@ -277,23 +277,26 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge/?module=/src/index.js)
 
-### Return-of-the-Timeout-Bug 
+### Vs-React
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/vs-react)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/vs-react/?module=/src/index.js)
 
+### Return-of-the-Timeout-Bug
 
-### mapBroadcasterCache 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-broadcaster-cache) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-broadcaster-cache/?module=/src/index.js) 
+### mapBroadcasterCache
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-broadcaster-cache)
 
-### Caching and Canceling 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-broadcaster-cache/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/caching-and-canceling) 
+### Caching and Canceling
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/caching-and-canceling/?module=/src/index.js) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/caching-and-canceling)
 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/caching-and-canceling/?module=/src/index.js)
