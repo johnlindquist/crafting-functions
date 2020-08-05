@@ -292,26 +292,6 @@ export let ignoreError = broadcaster => listener => {
 
 //https://openlibrary.org/search.json?q=starsight
 
-export let getURL = url => listener => {
-  let controller = new AbortController()
-  let signal = controller.signal
-  fetch(url, { signal })
-    .then(response => {
-      return response.json()
-    })
-    .then(json => {
-      listener(json)
-    })
-    .catch(error => {
-      listener(error)
-    })
-
-  return () => {
-    console.log(`aborting`)
-    controller.abort()
-  }
-}
-
 export let mapBroadcasterCache = createBroadcaster => broadcaster => listener => {
   let cache = new Map()
   let cancel

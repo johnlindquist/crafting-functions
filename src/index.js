@@ -4,6 +4,7 @@ import {
   useBroadcaster,
   useListener,
   forOf,
+  getURL,
 } from "./broadcasters"
 import {
   targetValue,
@@ -14,24 +15,58 @@ import {
 
 import { pipe } from "lodash/fp"
 
-let game = pipe(
-  mapBroadcaster(value => {
-    return map(letter =>
-      value.includes(letter) ? letter : "*"
-    )(forOf("honeycomb"))
-  }),
-  stringConcat
+let shareFirst = () => {
+  let setup = false
+  let sharedValue
+  let listeners = []
+  return broadcaster => listener => {
+    if (sharedValue) {
+      listener(sharedValue)
+      return
+    }
+
+    listeners.push(listener)
+
+    if (setup) return
+    broadcaster(value => {
+      sharedValue = value
+      listeners.forEach(listener => {
+        listener(sharedValue)
+      })
+    })
+    setup = true
+  }
+}
+
+let word = shareFirst()(
+  map(([word]) => word)(
+    getURL(`https://random-word-api.herokuapp.com/word`)
+  )
 )
 
 let App = () => {
   let onInput = useListener()
 
   let inputValue = targetValue(onInput)
-  let result = useBroadcaster(game(inputValue), "")
+
+  let game = pipe(
+    mapBroadcaster(word => {
+      return mapBroadcaster(value => {
+        return map(letter =>
+          value.includes(letter) ? letter : "*"
+        )(forOf(word))
+      })(inputValue)
+    }),
+    stringConcat
+  )
+
+  let result = useBroadcaster(game(word), "")
+  let randomWord = useBroadcaster(word)
   return (
     <div>
       <input type="text" onInput={onInput} />
       <p>{result}</p>
+      <p>{randomWord}</p>
     </div>
   )
 }

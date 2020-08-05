@@ -130,3 +130,23 @@ export let useListener = (deps = []) => {
   }
   return useCallback(callbackListener, deps)
 }
+
+export let getURL = url => listener => {
+  let controller = new AbortController()
+  let signal = controller.signal
+  fetch(url, { signal })
+    .then(response => {
+      return response.json()
+    })
+    .then(json => {
+      listener(json)
+    })
+    .catch(error => {
+      listener(error)
+    })
+
+  return () => {
+    console.log(`aborting`)
+    controller.abort()
+  }
+}
