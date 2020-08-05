@@ -11,32 +11,10 @@ import {
   mapBroadcaster,
   stringConcat,
   map,
+  shareFirst,
 } from "./operators"
 
 import { pipe } from "lodash/fp"
-
-let shareFirst = () => {
-  let setup = false
-  let sharedValue
-  let listeners = []
-  return broadcaster => listener => {
-    if (sharedValue) {
-      listener(sharedValue)
-      return
-    }
-
-    listeners.push(listener)
-
-    if (setup) return
-    broadcaster(value => {
-      sharedValue = value
-      listeners.forEach(listener => {
-        listener(sharedValue)
-      })
-    })
-    setup = true
-  }
-}
 
 let word = shareFirst()(
   map(([word]) => word)(

@@ -290,8 +290,6 @@ export let ignoreError = broadcaster => listener => {
   })
 }
 
-//https://openlibrary.org/search.json?q=starsight
-
 export let mapBroadcasterCache = createBroadcaster => broadcaster => listener => {
   let cache = new Map()
   let cancel
@@ -315,4 +313,27 @@ export let mapBroadcasterCache = createBroadcaster => broadcaster => listener =>
       listener(newValue)
     })
   })
+}
+
+export let shareFirst = () => {
+  let setup = false
+  let sharedValue
+  let listeners = []
+  return broadcaster => listener => {
+    if (sharedValue) {
+      listener(sharedValue)
+      return
+    }
+
+    listeners.push(listener)
+
+    if (setup) return
+    broadcaster(value => {
+      sharedValue = value
+      listeners.forEach(listener => {
+        listener(sharedValue)
+      })
+    })
+    setup = true
+  }
 }
