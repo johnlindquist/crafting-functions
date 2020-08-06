@@ -1,18 +1,14 @@
-import { pipe, compose } from "lodash/fp"
+//broadcaster
+//listener
 
-let i = 0
-let callback = event => {
-  return i++
+let listener = value => {
+  console.log(value)
 }
 
-let multiply = value => {
-  console.log(value * 2)
+let broadcaster = listener => {
+  listener(1)
+  listener(2)
+  listener(3)
 }
 
-let twosCallback = pipe(callback, multiply)
-
-twosCallback()
-twosCallback()
-twosCallback()
-
-document.addEventListener("click", twosCallback)
+broadcaster(listener)
