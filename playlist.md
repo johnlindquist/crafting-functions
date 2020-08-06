@@ -33,3 +33,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/broadcaster-listener-relationship/?module=/src/index.js) 
 
+
+### Time-the-Hidden-Variable 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/time-the-hidden-variable) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/time-the-hidden-variable/?module=/src/index.js) 
+
