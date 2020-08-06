@@ -1,15 +1,38 @@
-## Lessons I need to backfill
+### What Is a Closure in JavaScript
 
-- Defining a Broadcaster
-- Defining a Listener
-- Defining an Operator
-- What is a "Callback"
-- What is a Closure
-- What is a Buffer
-- Explaining the Purpose of the Course
-- And more...
-- CACHING!
-- Distinct Until Changed
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/what-is-a-closure)
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/what-is-a-closure/?module=/src/index.js)
+
+### What Is a Callback in JavaScript
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/what-is-a-callback)
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/what-is-a-callback/?module=/src/index.js)
+
+### Can a Function Be a Closure and a Callback?
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/combine-callback-and-closure)
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/combine-callback-and-closure/?module=/src/index.js)
+
+### Compose Closures and Callbacks to Create New Functions
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/composition-closures-and-callbacks)
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/composition-closures-and-callbacks/?module=/src/index.js)
+
+### Defining the Broadcaster and Listener Relationship
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/broadcaster-listener-relationship)
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/broadcaster-listener-relationship/?module=/src/index.js)
+
+### Time is a Hidden Variable in JavaScript
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/time-the-hidden-variable)
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/time-the-hidden-variable/?module=/src/index.js)
 
 ### Create a Function to Configure setTimeout
 
@@ -277,47 +300,48 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/use-listener-multiple-listeners-and-merge/?module=/src/index.js)
 
-### Vs-React
+### Compare useBroadcaster and useListener to the Standard React Hooks
 
 [Go to branch](https://github.com/johnlindquist/crafting-functions/tree/vs-react)
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/vs-react/?module=/src/index.js)
 
-### Return-of-the-Timeout-Bug
+### Remember to Check for Done
 
 [Go to branch](https://github.com/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug)
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/return-of-the-timeout-bug/?module=/src/index.js)
 
-### mapBroadcasterCache
+### Save Network Requests by Using a Cache
 
 [Go to branch](https://github.com/johnlindquist/crafting-functions/tree/map-broadcaster-cache)
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/map-broadcaster-cache/?module=/src/index.js)
 
-### Caching and Canceling
+### Fix Race Conditions Due to Caching and Canceling
 
 [Go to branch](https://github.com/johnlindquist/crafting-functions/tree/caching-and-canceling)
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/caching-and-canceling/?module=/src/index.js)
 
-### React-Word-Game 
+### Implement the Word Game in React with useBroadcaster
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-word-game) 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-word-game)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-word-game/?module=/src/index.js) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-word-game/?module=/src/index.js)
 
+### Fetch a Random Word to Start the React Word Game
 
-### React-Word-Game-getURL 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-word-game-get-url)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-word-game-get-url) 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-word-game-get-url/?module=/src/index.js)
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-word-game-get-url/?module=/src/index.js) 
+### Return a Cancel Function from useEffect to Avoid Unmounting Issues
 
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/cancel-use-effect)
 
-### Cancel-useEffect 
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/cancel-use-effect/?module=/src/index.js)
 
-[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/cancel-use-effect) 
+### Exploring the Patterns in the Operators
 
-[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/cancel-use-effect/?module=/src/index.js) 
-
+### Comparing Similarities with Popular Async Libraries
