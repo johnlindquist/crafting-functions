@@ -9,8 +9,10 @@ let multiply = value => {
   console.log(value * 2)
 }
 
-let twos = pipe(callback, multiply)
+let twosCallback = pipe(callback, multiply)
 
-twos()
-twos()
-twos()
+twosCallback()
+twosCallback()
+twosCallback()
+
+document.addEventListener("click", twosCallback)
