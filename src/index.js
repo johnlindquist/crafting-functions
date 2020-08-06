@@ -1,8 +1,11 @@
-let i = 0
-let closure = () => {
-  console.log(i++)
+let callback = event => {
+  console.log("click")
 }
 
-closure()
-closure()
-closure()
+let anotherFunction = fn => {
+  fn()
+  fn()
+  fn()
+}
+
+anotherFunction(callback)
