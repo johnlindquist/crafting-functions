@@ -1,72 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 import { render } from "react-dom"
 import {
   useBroadcaster,
-  useListener,
-  forOf,
-  getURL,
+  createInterval,
 } from "./broadcasters"
-import {
-  targetValue,
-  mapBroadcaster,
-  stringConcat,
-  map,
-} from "./operators"
 
-import { pipe } from "lodash/fp"
+let Timer = () => {
+  let timer = useBroadcaster(createInterval(500))
 
-let shareFirst = () => {
-  let setup = false
-  let sharedValue
-  let listeners = []
-  return broadcaster => listener => {
-    if (sharedValue) {
-      listener(sharedValue)
-      return
-    }
-
-    listeners.push(listener)
-
-    if (setup) return
-    broadcaster(value => {
-      sharedValue = value
-      listeners.forEach(listener => {
-        listener(sharedValue)
-      })
-    })
-    setup = true
-  }
+  return <div>{timer}</div>
 }
 
-let word = shareFirst()(
-  map(([word]) => word)(
-    getURL(`https://random-word-api.herokuapp.com/word`)
-  )
-)
-
 let App = () => {
-  let onInput = useListener()
-
-  let inputValue = targetValue(onInput)
-
-  let game = pipe(
-    mapBroadcaster(word => {
-      return mapBroadcaster(value => {
-        return map(letter =>
-          value.includes(letter) ? letter : "*"
-        )(forOf(word))
-      })(inputValue)
-    }),
-    stringConcat
-  )
-
-  let result = useBroadcaster(game(word), "")
-  let randomWord = useBroadcaster(word)
+  let [showTimer, setShowTimer] = useState(true)
   return (
     <div>
-      <input type="text" onInput={onInput} />
-      <p>{result}</p>
-      <p>{randomWord}</p>
+      <button onClick={event => setShowTimer(!showTimer)}>
+        Toggle Timer
+      </button>
+      {showTimer && <Timer></Timer>}
     </div>
   )
 }

@@ -314,3 +314,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-word-game-get-url/?module=/src/index.js) 
 
+
+### Cancel-useEffect 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/cancel-use-effect) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/cancel-use-effect/?module=/src/index.js) 
+

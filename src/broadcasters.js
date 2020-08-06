@@ -107,13 +107,18 @@ export let useBroadcaster = (
 ) => {
   let [state, setState] = useState(initial)
   useEffect(() => {
-    broadcaster(value => {
+    let cancel = broadcaster(value => {
       if (value === done) {
         return
       }
 
       setState(value)
     })
+
+    return () => {
+      console.log("unmounted")
+      cancel()
+    }
   }, deps)
 
   return state
