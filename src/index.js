@@ -1,11 +1,6 @@
+let i = 0
 let callback = event => {
-  console.log("click")
+  console.log(i++)
 }
 
-let anotherFunction = fn => {
-  fn()
-  fn()
-  fn()
-}
-
-anotherFunction(callback)
+document.addEventListener("click", callback)
