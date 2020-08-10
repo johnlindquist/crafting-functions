@@ -47,3 +47,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/solve-callback-hell/?module=/src/index.js) 
 
+
+### Callback-Hell-with-Values 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/callback-hell-with-values) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/callback-hell-with-values/?module=/src/index.js) 
+

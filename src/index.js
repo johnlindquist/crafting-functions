@@ -1,27 +1,33 @@
 import { pipe } from "lodash/fp"
 
-let click = listener => {
-  document.addEventListener("click", listener)
+let click = config => listener => {
+  document.addEventListener(config, listener)
 }
 
-let timeout = listener => {
-  setTimeout(listener, 1000)
+let timeout = config => listener => {
+  setTimeout(() => {
+    listener(config)
+  }, config)
 }
 
-let getURL = listener => {
-  fetch(`https://api.github.com/user/36073`)
+let getURL = config => listener => {
+  fetch(`https://api.github.com/user/${config}`)
     .then(response => response.json())
     .then(listener)
 }
 
-let nest = inner => outer => listener => {
-  outer(value => {
+let nest = mapInner => outer => listener => {
+  outer(config => {
+    let inner = mapInner(config)
     inner(listener)
   })
 }
 
-let timeoutURL = pipe(nest(timeout), nest(getURL))
+let timeoutURL = pipe(
+  nest(event => timeout(event.x)),
+  nest(getURL)
+)
 
-timeoutURL(click)(data => {
+timeoutURL(click("click"))(data => {
   console.log(data)
 })
