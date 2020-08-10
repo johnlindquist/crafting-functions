@@ -40,3 +40,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/time-the-hidden-variable/?module=/src/index.js) 
 
+
+### Solve-Callback-Hell 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/solve-callback-hell) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/solve-callback-hell/?module=/src/index.js) 
+

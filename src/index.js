@@ -1,33 +1,27 @@
-//broadcaster
-//listener
-//operator
+import { pipe } from "lodash/fp"
 
-let listener = value => {
-  console.log(value)
+let click = listener => {
+  document.addEventListener("click", listener)
 }
 
-let broadcaster = listener => {
-  listener(1)
-  listener(2)
-  listener(3)
+let timeout = listener => {
+  setTimeout(listener, 1000)
 }
 
-let operator = broadcaster => listener => {
-  let currentValue = 0
-  broadcaster(value => {
-    currentValue += value
-    setTimeout(() => {
-      listener(currentValue)
-    }, currentValue * 1000)
+let getURL = listener => {
+  fetch(`https://api.github.com/user/36073`)
+    .then(response => response.json())
+    .then(listener)
+}
+
+let nest = inner => outer => listener => {
+  outer(value => {
+    inner(listener)
   })
 }
 
-let timeoutByValue = broadcaster => listener => {
-  broadcaster(value => {
-    setTimeout(() => {
-      listener(value)
-    }, value * 1000)
-  })
-}
+let timeoutURL = pipe(nest(timeout), nest(getURL))
 
-operator(broadcaster)(listener)
+timeoutURL(click)(data => {
+  console.log(data)
+})
