@@ -4,21 +4,11 @@ import { render } from "react-dom"
 import {
   useBroadcaster,
   useListener,
-  forOf,
-  createTimeout,
 } from "./broadcasters"
 import {
-  mapSequence,
-  hardCode,
   targetValue,
   filter,
 } from "./operators"
-
-let message = "Hi, my name is John!".split(" ")
-let delayMessage = value =>
-  hardCode(value)(createTimeout(500))
-
-let broadcaster = mapSequence(delayMessage)(forOf(message))
 
 let allowWhen = allowBroadcaster => broadcaster => listener => {
   let current
