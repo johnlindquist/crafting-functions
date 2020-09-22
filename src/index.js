@@ -27,15 +27,17 @@ let App = () => {
   )
 
   let gameLogic = inputValue =>
-    map(letter =>
-      inputValue.includes(letter) ? letter : "*"
+    pipe(
+      map(letter =>
+        inputValue.includes(letter) ? letter : "*"
+      ),
+      stringConcat
     )(forOf(word))
 
   let guessBroadcaster = pipe(
     filter(() => word),
     targetValue,
-    mapBroadcaster(gameLogic),
-    stringConcat
+    mapBroadcaster(gameLogic)
   )(onInput)
 
   let guess = useBroadcaster(guessBroadcaster, "", [word])
