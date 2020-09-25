@@ -104,7 +104,7 @@ export let targetValue = map(event => event.target.value)
 export let mapBroadcaster = createBroadcaster => broadcaster => listener => {
   return broadcaster(value => {
     let newBroadcaster = createBroadcaster(value)
-    newBroadcaster(listener)
+    let cancel = newBroadcaster(listener)
   })
 }
 
@@ -315,4 +315,27 @@ export let mapBroadcasterCache = createBroadcaster => broadcaster => listener =>
       listener(newValue)
     })
   })
+}
+
+export let log = b => l => b(v => console.log(v) || l(v))
+
+export let share = () => {
+  let cancel
+  let listeners = []
+  return broadcaster => {
+    if (!cancel) {
+      cancel = broadcaster(value => {
+        listeners.forEach(l => {
+          l(value)
+        })
+      })
+    }
+    return listener => {
+      listeners.push(listener)
+
+      return () => {
+        cancel()
+      }
+    }
+  }
 }

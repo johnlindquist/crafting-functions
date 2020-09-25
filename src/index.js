@@ -1,46 +1,45 @@
 import React from "react"
 import { render } from "react-dom"
 import {
+  and,
   useBroadcaster,
   useListener,
   getURL,
-  forOf,
 } from "./broadcasters"
 import {
   targetValue,
   map,
   filter,
-  mapBroadcaster,
-  stringConcat,
+  share,
+  log,
 } from "./operators"
 
-import { pipe } from "lodash/fp"
+import { every, isString, pipe, head } from "lodash/fp"
+
+let wordBroadcaster = pipe(
+  map(head),
+  log,
+  share()
+)(getURL(`https://random-word-api.herokuapp.com/word`))
+
+let gameCondition = ([guess, word]) => {
+  return Array.from(word)
+    .map(letter => (guess.includes(letter) ? letter : "*"))
+    .join("")
+}
+let gameLogic = pipe(
+  filter(every(isString)),
+  map(gameCondition)
+)
 
 let App = () => {
   let onInput = useListener()
 
-  let word = useBroadcaster(
-    map(([word]) => word)(
-      getURL(`https://random-word-api.herokuapp.com/word`)
-    ),
-    ""
-  )
+  let guessBroadcaster = targetValue(onInput)
+  let game = and(guessBroadcaster, wordBroadcaster)
 
-  let gameLogic = inputValue =>
-    pipe(
-      map(letter =>
-        inputValue.includes(letter) ? letter : "*"
-      ),
-      stringConcat
-    )(forOf(word))
-
-  let guessBroadcaster = pipe(
-    filter(() => word),
-    targetValue,
-    mapBroadcaster(gameLogic)
-  )(onInput)
-
-  let guess = useBroadcaster(guessBroadcaster, "", [word])
+  let word = useBroadcaster(wordBroadcaster)
+  let guess = useBroadcaster(gameLogic(game))
 
   return (
     <div>

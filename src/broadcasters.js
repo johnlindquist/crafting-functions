@@ -1,4 +1,4 @@
-import { curry } from "lodash"
+import { curry } from "lodash/fp"
 import { useState, useEffect, useCallback } from "react"
 export let done = Symbol("done")
 
@@ -34,8 +34,28 @@ export let createInterval = curry((time, listener) => {
   }
 })
 
-//broadcaster = function that accepts a listener
-export let merge = curry(
+export let and = (broadcaster1, broadcaster2) => {
+  let value1
+  let value2
+  return listener => {
+    let cancel1 = broadcaster1(value => {
+      value1 = value
+      listener([value1, value2])
+    })
+
+    let cancel2 = broadcaster2(value => {
+      value2 = value
+      listener([value1, value2])
+    })
+
+    return () => {
+      cancel1()
+      cancel2()
+    }
+  }
+}
+
+export let or = curry(
   (broadcaster1, broadcaster2, listener) => {
     let cancel1 = broadcaster1(listener)
     let cancel2 = broadcaster2(listener)
@@ -103,18 +123,18 @@ export let forOf = curry((iterable, listener) => {
 export let useBroadcaster = (
   broadcaster,
   initial = null,
-  deps = []
+  deps
 ) => {
   let [state, setState] = useState(initial)
   useEffect(() => {
-    broadcaster(value => {
+    return broadcaster(value => {
       if (value === done) {
         return
       }
 
       setState(value)
     })
-  }, deps)
+  }, [])
 
   return state
 }
@@ -124,7 +144,9 @@ export let useListener = (deps = []) => {
   let callbackListener = value => {
     if (typeof value === "function") {
       listeners.push(value)
-      return
+      return () => {
+        listeners = null
+      }
     }
     listeners.forEach(listener => listener(value))
   }
