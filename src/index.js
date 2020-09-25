@@ -1,130 +1,41 @@
 import React from "react"
 import { render } from "react-dom"
 
-import {
-  useBroadcaster,
-  useListener,
-  forOf,
-  createTimeout,
-  merge,
-} from "./broadcasters"
-import {
-  mapSequence,
-  hardCode,
-  targetValue,
-  mapBroadcaster,
-  waitFor,
-  map,
-  filter,
-} from "./operators"
+//`https://random-word-api.herokuapp.com/word`
 
-import { pipe } from "lodash/fp"
+import { pipe, head } from "lodash/fp"
+import { getURL, useBroadcaster } from "./broadcasters"
+import { map } from "./operators"
 
-let mapError = transform => broadcaster => listener => {
-  return broadcaster(value => {
-    if (value instanceof Error) {
-      listener(transform(value))
-      return
+let share = () => {
+  let cancel
+  let listeners = []
+  return broadcaster => {
+    cancel = broadcaster(value => {
+      listeners.forEach(listener => listener(value))
+    })
+    return listener => {
+      listeners.push(listener)
+
+      return () => {
+        cancel()
+      }
     }
-
-    listener(value)
-  })
-}
-
-let ignoreError = broadcaster => listener => {
-  return broadcaster(value => {
-    if (value instanceof Error) {
-      return
-    }
-
-    listener(value)
-  })
-}
-
-//https://openlibrary.org/search.json?q=starsight
-
-let getURL = url => listener => {
-  let controller = new AbortController()
-  let signal = controller.signal
-  fetch(url, { signal })
-    .then(response => {
-      return response.json()
-    })
-    .then(json => {
-      listener(json)
-    })
-    .catch(error => {
-      listener(error)
-    })
-
-  return () => {
-    console.log(`aborting`)
-    controller.abort()
   }
 }
 
-export let mapBroadcasterCache = createBroadcaster => broadcaster => listener => {
-  let cache = new Map()
-  let cancel
-  return broadcaster(value => {
-    if (cancel) {
-      console.log(`attempting cancel`)
-      cancel()
-    }
-
-    if (cache.has(value)) {
-      listener(cache.get(value))
-      return
-    }
-
-    let newBroadcaster = createBroadcaster(value)
-    cancel = newBroadcaster(newValue => {
-      if (!(newValue instanceof Error)) {
-        cache.set(value, newValue)
-      }
-      console.log(cache)
-      listener(newValue)
-    })
-  })
-}
+let getWord = pipe(
+  map(head),
+  share()
+)(getURL(`https://random-word-api.herokuapp.com/word`))
 
 let App = () => {
-  let onInput = useListener()
-
-  let inputValue = targetValue(onInput)
-
-  let inputToBookSearch = pipe(
-    waitFor(500),
-    filter(name => name.length > 3),
-    map(
-      name =>
-        `https://openlibrary.org/search.json?q=${name}`
-    ),
-    mapBroadcasterCache(getURL),
-    ignoreError,
-    map(result => result.docs)
-  )(inputValue)
-
-  let inputToClearSearch = pipe(
-    filter(name => name.length < 2),
-    map(name => [])
-  )(inputValue)
-
-  let books = useBroadcaster(
-    merge(inputToBookSearch, inputToClearSearch),
-    []
-  )
-
+  let word = useBroadcaster(getWord)
+  let anotherWord = useBroadcaster(getWord)
   return (
     <div>
-      <input type="text" onInput={onInput} />
-      {books.map(book => (
-        <div key={book.key}>
-          <a href={`https://openlibrary.org${book.key}`}>
-            {book.title}
-          </a>
-        </div>
-      ))}
+      <p>{word}</p>
+      <p>{anotherWord}</p>
     </div>
   )
 }

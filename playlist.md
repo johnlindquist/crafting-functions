@@ -300,3 +300,10 @@
 [Go to branch](https://github.com/johnlindquist/crafting-functions/tree/caching-and-canceling)
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/caching-and-canceling/?module=/src/index.js)
+
+### Share 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/share) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/share/?module=/src/index.js) 
+

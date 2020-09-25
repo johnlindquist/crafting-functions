@@ -269,3 +269,51 @@ export let waitFor = time => broadcaster => listener => {
     cancel()
   }
 }
+
+export let mapError = transform => broadcaster => listener => {
+  return broadcaster(value => {
+    if (value instanceof Error) {
+      listener(transform(value))
+      return
+    }
+
+    listener(value)
+  })
+}
+
+let ignoreError = broadcaster => listener => {
+  return broadcaster(value => {
+    if (value instanceof Error) {
+      return
+    }
+
+    listener(value)
+  })
+}
+
+//https://openlibrary.org/search.json?q=starsight
+
+export let mapBroadcasterCache = createBroadcaster => broadcaster => listener => {
+  let cache = new Map()
+  let cancel
+  return broadcaster(value => {
+    if (cancel) {
+      console.log(`attempting cancel`)
+      cancel()
+    }
+
+    if (cache.has(value)) {
+      listener(cache.get(value))
+      return
+    }
+
+    let newBroadcaster = createBroadcaster(value)
+    cancel = newBroadcaster(newValue => {
+      if (!(newValue instanceof Error)) {
+        cache.set(value, newValue)
+      }
+      console.log(cache)
+      listener(newValue)
+    })
+  })
+}
