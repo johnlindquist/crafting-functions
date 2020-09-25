@@ -321,3 +321,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-hangman-use-deps/?module=/src/index.js) 
 
+
+### React-Hangman-Use-Deps 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-hangman-use-deps) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-hangman-use-deps/?module=/src/index.js) 
+
