@@ -4,16 +4,22 @@ import { render } from "react-dom"
 //`https://random-word-api.herokuapp.com/word`
 
 import { pipe, head } from "lodash/fp"
-import { getURL, useBroadcaster } from "./broadcasters"
-import { map } from "./operators"
+import {
+  getURL,
+  useBroadcaster,
+  useListener,
+} from "./broadcasters"
+import { map, mapBroadcaster } from "./operators"
 
 let share = () => {
   let cancel
   let listeners = []
   return broadcaster => {
-    cancel = broadcaster(value => {
-      listeners.forEach(listener => listener(value))
-    })
+    if (!cancel) {
+      cancel = broadcaster(value => {
+        listeners.forEach(listener => listener(value))
+      })
+    }
     return listener => {
       listeners.push(listener)
 
@@ -25,15 +31,22 @@ let share = () => {
 }
 
 let getWord = pipe(
-  map(head),
+  mapBroadcaster(event =>
+    pipe(map(head))(
+      getURL(`https://random-word-api.herokuapp.com/word`)
+    )
+  ),
   share()
-)(getURL(`https://random-word-api.herokuapp.com/word`))
+)
 
 let App = () => {
-  let word = useBroadcaster(getWord)
-  let anotherWord = useBroadcaster(getWord)
+  let onClick = useListener()
+
+  let word = useBroadcaster(getWord(onClick))
+  let anotherWord = useBroadcaster(getWord(onClick))
   return (
     <div>
+      <button onClick={onClick}>Load word</button>
       <p>{word}</p>
       <p>{anotherWord}</p>
     </div>
