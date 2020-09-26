@@ -47,6 +47,28 @@ export let merge = curry(
   }
 )
 
+export let combine = (
+  broadcaster1,
+  broadcaster2
+) => listener => {
+  let value1
+  let value2
+
+  let cancel1 = broadcaster1(value => {
+    value1 = value
+    listener([value1, value2])
+  })
+  let cancel2 = broadcaster2(value => {
+    value2 = value
+    listener([value1, value2])
+  })
+
+  return () => {
+    cancel1()
+    cancel2()
+  }
+}
+
 export let zip = curry(
   (broadcaster1, broadcaster2, listener) => {
     let cancelBoth

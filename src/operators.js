@@ -317,3 +317,22 @@ export let mapBroadcasterCache = createBroadcaster => broadcaster => listener =>
     })
   })
 }
+
+export let share = () => {
+  let cancel
+  let listeners = []
+  return broadcaster => {
+    if (!cancel) {
+      cancel = broadcaster(value => {
+        listeners.forEach(listener => listener(value))
+      })
+    }
+    return listener => {
+      listeners.push(listener)
+
+      return () => {
+        cancel()
+      }
+    }
+  }
+}

@@ -314,3 +314,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/share-time/?module=/src/index.js) 
 
+
+### Combine 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/combine) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/combine/?module=/src/index.js) 
+

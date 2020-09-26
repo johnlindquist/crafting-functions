@@ -5,50 +5,35 @@ import { render } from "react-dom"
 
 import { pipe, head } from "lodash/fp"
 import {
+  combine,
   getURL,
   useBroadcaster,
   useListener,
 } from "./broadcasters"
-import { map, mapBroadcaster } from "./operators"
-
-let share = () => {
-  let cancel
-  let listeners = []
-  return broadcaster => {
-    if (!cancel) {
-      cancel = broadcaster(value => {
-        listeners.forEach(listener => listener(value))
-      })
-    }
-    return listener => {
-      listeners.push(listener)
-
-      return () => {
-        cancel()
-      }
-    }
-  }
-}
+import { map, share, targetValue } from "./operators"
 
 let getWord = pipe(
-  mapBroadcaster(event =>
-    pipe(map(head))(
-      getURL(`https://random-word-api.herokuapp.com/word`)
-    )
-  ),
+  map(head),
   share()
-)
+)(getURL(`https://random-word-api.herokuapp.com/word`))
 
 let App = () => {
-  let onClick = useListener()
+  let onInput = useListener()
 
-  let word = useBroadcaster(getWord(onClick))
-  let anotherWord = useBroadcaster(getWord(onClick))
+  let word = useBroadcaster(getWord)
+
+  let gameBroadcaster = combine(
+    targetValue(onInput),
+    getWord
+  )
+
+  let game = useBroadcaster(gameBroadcaster)
+
   return (
     <div>
-      <button onClick={onClick}>Load word</button>
+      <input type="text" onInput={onInput} />
       <p>{word}</p>
-      <p>{anotherWord}</p>
+      <p>{JSON.stringify(game)}</p>
     </div>
   )
 }
