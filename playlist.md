@@ -321,3 +321,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/combine/?module=/src/index.js) 
 
+
+### Game-Final 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/game-final) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/game-final/?module=/src/index.js) 
+
