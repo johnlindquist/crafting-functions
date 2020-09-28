@@ -335,3 +335,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-reloading-a-word/?module=/src/index.js) 
 
+
+### React-Clearing-the-Guess 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-clearing-the-guess) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-clearing-the-guess/?module=/src/index.js) 
+

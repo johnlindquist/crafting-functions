@@ -37,20 +37,29 @@ let gameLogic = pipe(
   repeat
 )
 
+let init = value => broadcaster => listener => {
+  listener(value)
+  return broadcaster(listener)
+}
+
+let guessPipe = pipe(targetValue, init(""))
+
 let App = () => {
   let onInput = useListener()
 
   let word = useBroadcaster(getWord)
+  let guessBroadcaster = guessPipe(onInput)
+  let guess = useBroadcaster(guessBroadcaster, "", [word])
 
   let gameBroadcaster = gameLogic(
-    combine(targetValue(onInput), getWord)
+    combine(guessBroadcaster, getWord)
   )
 
   let game = useBroadcaster(gameBroadcaster, "")
 
   return (
     <div>
-      <input type="text" onInput={onInput} />
+      <input type="text" onChange={onInput} value={guess} />
       <p>{word}</p>
       <p>{game}</p>
     </div>
