@@ -176,7 +176,6 @@ export let doneIf = condition => broadcaster => listener => {
     listener(value)
     if (condition(value)) {
       listener(done)
-      cancel()
     }
   })
 
@@ -322,16 +321,18 @@ export let share = () => {
   let cancel
   let listeners = []
   return broadcaster => {
-    if (!cancel) {
-      cancel = broadcaster(value => {
-        listeners.forEach(listener => listener(value))
-      })
-    }
     return listener => {
+      if (!cancel) {
+        console.log(`setup broadcaster`)
+        cancel = broadcaster(value => {
+          listeners.forEach(listener => listener(value))
+        })
+      }
       listeners.push(listener)
 
       return () => {
         cancel()
+        cancel = null
       }
     }
   }

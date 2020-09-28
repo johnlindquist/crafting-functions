@@ -11,8 +11,10 @@ import {
   useListener,
 } from "./broadcasters"
 import {
+  doneIf,
   filter,
   map,
+  repeat,
   share,
   targetValue,
 } from "./operators"
@@ -30,7 +32,9 @@ let gameLogic = pipe(
         guess.includes(letter) ? letter : "*"
       )
       .join("")
-  )
+  ),
+  doneIf(guess => guess && !guess.includes("*")),
+  repeat
 )
 
 let App = () => {
