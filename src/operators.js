@@ -1,4 +1,4 @@
-import { curry, pipe } from "lodash/fp"
+import { curry } from "lodash"
 import { done, createTimeout } from "./broadcasters"
 
 let createOperator = curry(
@@ -297,6 +297,7 @@ export let mapBroadcasterCache = createBroadcaster => broadcaster => listener =>
   let cancel
   return broadcaster(value => {
     if (cancel) {
+      console.log(`attempting cancel`)
       cancel()
     }
 
@@ -310,6 +311,7 @@ export let mapBroadcasterCache = createBroadcaster => broadcaster => listener =>
       if (!(newValue instanceof Error)) {
         cache.set(value, newValue)
       }
+      console.log(cache)
       listener(newValue)
     })
   })
@@ -321,33 +323,18 @@ export let share = () => {
   return broadcaster => {
     return listener => {
       if (!cancel) {
+        console.log(`setup broadcaster`)
         cancel = broadcaster(value => {
+          console.log({ listeners })
           listeners.forEach(listener => listener(value))
         })
       }
       listeners.push(listener)
 
       return () => {
-        listeners = []
         cancel()
         cancel = null
       }
     }
   }
-}
-
-export let init = value => broadcaster => listener => {
-  listener(value)
-  return broadcaster(listener)
-}
-
-export let repeatIf = condition =>
-  pipe(doneIf(condition), repeat)
-
-export let thenCombine = secondBroadcaster => {
-  return mapBroadcaster(firstValue =>
-    map(secondValue => [firstValue, secondValue])(
-      secondBroadcaster
-    )
-  )
 }

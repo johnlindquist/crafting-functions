@@ -76,6 +76,7 @@ export let zip = curry(
     let buffer1 = []
     let cancel1 = broadcaster1(value => {
       buffer1.push(value)
+      // console.log(buffer1)
       if (buffer2.length) {
         listener([buffer1.shift(), buffer2.shift()])
 
@@ -173,6 +174,7 @@ export let getURL = url => listener => {
     })
 
   return () => {
+    console.log(`aborting`)
     controller.abort()
   }
 }

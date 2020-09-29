@@ -349,3 +349,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-hangman-done/?module=/src/index.js) 
 
+
+### React-Then-Combine 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-then-combine) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-then-combine/?module=/src/index.js) 
+
