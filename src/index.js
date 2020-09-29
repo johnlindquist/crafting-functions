@@ -35,14 +35,9 @@ let thenCombine = secondBroadcaster => {
 
 let gameLogic = pipe(
   filter(every(isString)),
-  map(([word, guess]) =>
-    Array.from(word)
-      .map(letter =>
-        guess.includes(letter) ? letter : "*"
-      )
-      .join("")
+  doneIf(([word, guess]) =>
+    Array.from(word).every(letter => guess.includes(letter))
   ),
-  doneIf(guess => guess && !guess.includes("*")),
   repeat
 )
 
@@ -56,21 +51,28 @@ let guessPipe = pipe(targetValue, init(""))
 let App = () => {
   let onInput = useListener()
 
-  let word = useBroadcaster(getWord)
   let guessBroadcaster = guessPipe(onInput)
-  let guess = useBroadcaster(guessBroadcaster, "")
 
   let gameBroadcaster = gameLogic(
     thenCombine(guessBroadcaster)(getWord)
   )
 
-  let game = useBroadcaster(gameBroadcaster, "")
+  let [word, guess] = useBroadcaster(gameBroadcaster, [
+    "",
+    "",
+  ])
 
   return (
     <div>
       <input type="text" onChange={onInput} value={guess} />
       <p>{word}</p>
-      <p>{game}</p>
+      <p>
+        {Array.from(word)
+          .map(letter =>
+            guess.includes(letter) ? letter : "*"
+          )
+          .join("")}
+      </p>
     </div>
   )
 }

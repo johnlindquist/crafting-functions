@@ -333,6 +333,7 @@ export let share = () => {
       return () => {
         cancel()
         cancel = null
+        listeners = []
       }
     }
   }
