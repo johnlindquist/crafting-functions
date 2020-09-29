@@ -1,57 +1,34 @@
 import React from "react"
 import { render } from "react-dom"
 
-//`https://random-word-api.herokuapp.com/word`
-
 import { pipe, head, every, isString } from "lodash/fp"
 import {
-  combine,
   getURL,
   useBroadcaster,
   useListener,
 } from "./broadcasters"
 import {
-  doneIf,
   filter,
   map,
-  mapBroadcaster,
-  repeat,
-  share,
   targetValue,
+  init,
+  log,
+  thenCombine,
+  repeatIf,
 } from "./operators"
 
-let getWord = pipe(
-  map(head),
-  share()
-)(getURL(`https://random-word-api.herokuapp.com/word`))
+let getWord = pipe(map(head))(
+  getURL(`https://random-word-api.herokuapp.com/word`)
+)
 
-let thenCombine = secondBroadcaster => {
-  return mapBroadcaster(firstValue =>
-    map(secondValue => [firstValue, secondValue])(
-      secondBroadcaster
-    )
-  )
-}
-
-let log = b => l =>
-  b(v => {
-    console.log(v)
-    l(v)
-  })
+let repeatLogic = ([word, guess]) =>
+  Array.from(word).every(letter => guess.includes(letter))
 
 let gameLogic = pipe(
   filter(every(isString)),
   log,
-  doneIf(([word, guess]) =>
-    Array.from(word).every(letter => guess.includes(letter))
-  ),
-  repeat
+  repeatIf(repeatLogic)
 )
-
-let init = value => broadcaster => listener => {
-  listener(value)
-  return broadcaster(listener)
-}
 
 let guessPipe = pipe(targetValue, init(""))
 

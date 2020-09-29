@@ -1,4 +1,4 @@
-import { curry } from "lodash"
+import { curry, pipe } from "lodash/fp"
 import { done, createTimeout } from "./broadcasters"
 
 let createOperator = curry(
@@ -344,3 +344,23 @@ export let share = () => {
     }
   }
 }
+export let init = value => broadcaster => listener => {
+  listener(value)
+  return broadcaster(listener)
+}
+export let thenCombine = secondBroadcaster => {
+  return mapBroadcaster(firstValue =>
+    map(secondValue => [firstValue, secondValue])(
+      secondBroadcaster
+    )
+  )
+}
+
+export let log = b => l =>
+  b(v => {
+    console.log(v)
+    l(v)
+  })
+
+export let repeatIf = condition =>
+  pipe(doneIf(condition), repeat)
