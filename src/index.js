@@ -33,8 +33,15 @@ let thenCombine = secondBroadcaster => {
   )
 }
 
+let log = b => l =>
+  b(v => {
+    console.log(v)
+    l(v)
+  })
+
 let gameLogic = pipe(
   filter(every(isString)),
+  log,
   doneIf(([word, guess]) =>
     Array.from(word).every(letter => guess.includes(letter))
   ),

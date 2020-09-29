@@ -102,10 +102,16 @@ export let stopWhen = whenBroadcaster => mainBroadcaster => listener => {
 export let targetValue = map(event => event.target.value)
 
 export let mapBroadcaster = createBroadcaster => broadcaster => listener => {
-  return broadcaster(value => {
+  let newCancel
+  let cancel = broadcaster(value => {
     let newBroadcaster = createBroadcaster(value)
-    newBroadcaster(listener)
+    newCancel = newBroadcaster(listener)
   })
+
+  return () => {
+    cancel()
+    if (newCancel) newCancel()
+  }
 }
 
 export let applyOperator = broadcaster =>

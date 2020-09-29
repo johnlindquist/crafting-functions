@@ -363,3 +363,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-game-state/?module=/src/index.js) 
 
+
+### React-Repeat-Cancel 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-repeat-cancel) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-repeat-cancel/?module=/src/index.js) 
+
