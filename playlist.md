@@ -342,3 +342,10 @@
 
 [Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-clearing-the-guess/?module=/src/index.js) 
 
+
+### React-Hangman-Done 
+
+[Go to branch](https://github.com/johnlindquist/crafting-functions/tree/react-hangman-done) 
+
+[Edit on Codesandbox](https://codesandbox.io/s/github/johnlindquist/crafting-functions/tree/react-hangman-done/?module=/src/index.js) 
+

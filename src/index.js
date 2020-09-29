@@ -1,67 +1,59 @@
+//`https://random-word-api.herokuapp.com/word`
+import { head, pipe, every, isString } from "lodash/fp"
 import React from "react"
 import { render } from "react-dom"
-
-//`https://random-word-api.herokuapp.com/word`
-
-import { pipe, head, every, isString } from "lodash/fp"
 import {
-  combine,
   getURL,
   useBroadcaster,
   useListener,
 } from "./broadcasters"
 import {
-  doneIf,
-  filter,
+  init,
   map,
-  repeat,
-  share,
+  repeatIf,
   targetValue,
+  thenCombine,
+  filter,
 } from "./operators"
 
-let getWord = pipe(
-  map(head),
-  share()
-)(getURL(`https://random-word-api.herokuapp.com/word`))
+let getWord = pipe(map(head))(
+  getURL(`https://random-word-api.herokuapp.com/word`)
+)
+
+let doneLogic = ([word, guess]) =>
+  word &&
+  guess &&
+  Array.from(word).every(letter => guess.includes(letter))
 
 let gameLogic = pipe(
   filter(every(isString)),
-  map(([guess, word]) =>
-    Array.from(word)
-      .map(letter =>
-        guess.includes(letter) ? letter : "*"
-      )
-      .join("")
-  ),
-  doneIf(guess => guess && !guess.includes("*")),
-  repeat
+  repeatIf(doneLogic)
 )
-
-let init = value => broadcaster => listener => {
-  listener(value)
-  return broadcaster(listener)
-}
 
 let guessPipe = pipe(targetValue, init(""))
 
 let App = () => {
   let onInput = useListener()
-
-  let word = useBroadcaster(getWord)
   let guessBroadcaster = guessPipe(onInput)
-  let guess = useBroadcaster(guessBroadcaster, "", [word])
 
   let gameBroadcaster = gameLogic(
-    combine(guessBroadcaster, getWord)
+    thenCombine(guessBroadcaster)(getWord)
   )
 
-  let game = useBroadcaster(gameBroadcaster, "")
+  let [word, guess] = useBroadcaster(gameBroadcaster, [
+    "",
+    "",
+  ])
 
   return (
     <div>
       <input type="text" onChange={onInput} value={guess} />
       <p>{word}</p>
-      <p>{game}</p>
+      <p>
+        {Array.from(word).map(letter =>
+          guess.includes(letter) ? letter : "*"
+        )}
+      </p>
     </div>
   )
 }

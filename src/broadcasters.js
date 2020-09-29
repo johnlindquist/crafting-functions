@@ -76,7 +76,6 @@ export let zip = curry(
     let buffer1 = []
     let cancel1 = broadcaster1(value => {
       buffer1.push(value)
-      // console.log(buffer1)
       if (buffer2.length) {
         listener([buffer1.shift(), buffer2.shift()])
 
@@ -129,13 +128,17 @@ export let useBroadcaster = (
 ) => {
   let [state, setState] = useState(initial)
   useEffect(() => {
-    broadcaster(value => {
+    let cancel = broadcaster(value => {
       if (value === done) {
         return
       }
 
       setState(value)
     })
+
+    return () => {
+      cancel()
+    }
   }, deps)
 
   return state
@@ -170,7 +173,6 @@ export let getURL = url => listener => {
     })
 
   return () => {
-    console.log(`aborting`)
     controller.abort()
   }
 }
