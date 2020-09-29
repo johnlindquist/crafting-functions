@@ -325,7 +325,6 @@ export let share = () => {
       if (!cancel) {
         console.log(`setup broadcaster`)
         cancel = broadcaster(value => {
-          console.log({ listeners })
           listeners.forEach(listener => listener(value))
         })
       }
